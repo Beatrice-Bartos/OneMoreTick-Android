@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light">
+
+
+    <LinearLayout
+        android:id="@+id/recoveryPasswordLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_reset_pass_drawable"
+        android:background="@drawable/solid_shape_light"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/recoveryNamePage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginHorizontal="@dimen/margin_space_40"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:text="@string/reset_password"
+            android:textColor="@color/gray_light"
+            android:textSize="@dimen/title_text_size" />
+
+        <TextView
+            android:id="@+id/instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginHorizontal="@dimen/margin_space_40"
+            android:layout_marginTop="@dimen/margin_space_10"
+            android:fontFamily="@font/nunito_sans_semibold_italic"
+            android:text="@string/recovery_pass_text_1"
+            android:textColor="@color/gray_light"
+            android:textSize="@dimen/text_size" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_text_input_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_space_40"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="@dimen/margin_space_40"
+            android:hint="@string/email"
+            android:textColorHint="@color/blue_dark1"
+            app:boxBackgroundColor="@color/gray_light"
+            app:boxBackgroundMode="filled"
+            app:boxStrokeColor="@color/blue_dark1"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/blue_dark1"
+            app:hintTextColor="@color/blue_dark1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email_text_input_editText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_field"
+                android:drawableStart="@drawable/email_icon"
+                android:fontFamily="@font/nunito_sans"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:minHeight="@dimen/height_field"
+                android:paddingStart="@dimen/default_padding"
+                android:paddingEnd="@dimen/default_padding"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/resetPassBtn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/margin_space_40"
+            android:layout_marginTop="@dimen/margin_space_40"
+            android:background="@drawable/selector_button_blue"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:text="@string/reset_password"
+            android:textColor="@color/gray_light"
+            android:textSize="@dimen/text_size" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
