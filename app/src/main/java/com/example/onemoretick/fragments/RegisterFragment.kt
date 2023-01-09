@@ -1,28 +1,15 @@
 package com.example.onemoretick.fragments
 
-import android.Manifest
-import android.app.Dialog
 import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.Address
-import android.location.Geocoder
-import android.location.Location
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.onemoretick.R
 import com.example.onemoretick.helpers.UtilValidators
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import java.io.IOException
 
 class RegisterFragment : Fragment() {
     //    private var auth: FirebaseAuth? = null
@@ -59,7 +46,7 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<View>(R.id.user_profile_button)
+        view.findViewById<View>(R.id.sign_up_button)
             .setOnClickListener { validateEmailAndPassword() }
     }
 

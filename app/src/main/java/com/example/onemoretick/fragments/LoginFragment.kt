@@ -43,28 +43,29 @@ class LoginFragment : Fragment() {
         val editTextEmail = view.findViewById<EditText>(R.id.email_text_input_editText)
         val editTextPassword = view.findViewById<EditText>(R.id.password_text_input_editText)
         val rememberMe = view.findViewById<CheckBox>(R.id.remember_me_checkBox)
-//        val sharedPreferences = requireContext().getSharedPreferences("mainPrefs", Context.MODE_PRIVATE)
-//        if (sharedPreferences.contains("Email") && sharedPreferences.contains("Password")) {
-//            rememberMe.isChecked = true
-//            val emailStr = sharedPreferences.getString("Email", "")
-//            val passwordStr = sharedPreferences.getString("Password", "")
-//            editTextEmail.setText(emailStr)
-//            editTextPassword.setText(passwordStr)
-//        }
+        val sharedPreferences =
+            requireContext().getSharedPreferences("mainPrefs", Context.MODE_PRIVATE)
+        if (sharedPreferences.contains("Email") && sharedPreferences.contains("Password")) {
+            rememberMe.isChecked = true
+            val emailStr = sharedPreferences.getString("Email", "")
+            val passwordStr = sharedPreferences.getString("Password", "")
+            editTextEmail.setText(emailStr)
+            editTextPassword.setText(passwordStr)
+        }
         view.findViewById<View>(R.id.login_button).setOnClickListener { validateEmailAndPassword() }
         view.findViewById<View>(R.id.forgotPassword_textView)
             .setOnClickListener { goToForgotPasswordFragment() }
         view.findViewById<View>(R.id.register_textView)
             .setOnClickListener { goToRegisterFragment() }
-//        rememberMe.setOnCheckedChangeListener { compoundButton, b ->
-//            if (compoundButton.isChecked) {
-//                save("Email", editTextEmail)
-//                save("Password", editTextPassword)
-//            } else if (!compoundButton.isChecked) {
-//                delete()
-//                delete()
-//            }
-//        }
+        rememberMe.setOnCheckedChangeListener { compoundButton, _ ->
+            if (compoundButton.isChecked) {
+                save("Email", editTextEmail)
+                save("Password", editTextPassword)
+            } else if (!compoundButton.isChecked) {
+                delete()
+                delete()
+            }
+        }
     }
 
     private fun goToRegisterFragment() {
@@ -120,17 +121,19 @@ class LoginFragment : Fragment() {
 //        }
 //    }
 
-//    private fun save(key: String, text: EditText) {
-//        val sharedPreferences = context!!.getSharedPreferences("mainPrefs", Context.MODE_PRIVATE)
-//        val myEdit = sharedPreferences.edit()
-//        myEdit.putString(key, text.text.toString())
-//        myEdit.apply()
-//    }
-//
-//    private fun delete() {
-//        val sharedPreferences = context!!.getSharedPreferences("mainPrefs", Context.MODE_PRIVATE)
-//        val myEdit = sharedPreferences.edit().clear().commit()
-//    }
+    private fun save(key: String, text: EditText) {
+        val sharedPreferences =
+            requireContext().getSharedPreferences("mainPrefs", Context.MODE_PRIVATE)
+        val myEdit = sharedPreferences.edit()
+        myEdit.putString(key, text.text.toString())
+        myEdit.apply()
+    }
+
+    private fun delete() {
+        val sharedPreferences =
+            requireContext().getSharedPreferences("mainPrefs", Context.MODE_PRIVATE)
+        val myEdit = sharedPreferences.edit().clear().commit()
+    }
 
     companion object {
         const val TAG_LOGIN = "TAG_LOGIN"
