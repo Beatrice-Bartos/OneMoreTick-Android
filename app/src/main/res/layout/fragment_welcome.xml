@@ -14,6 +14,7 @@
         android:text="@string/title"
         android:textColor="@color/blue"
         android:textSize="@dimen/title_text_size"
+        app:layout_constraintBottom_toTopOf="@id/animationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,6 +23,8 @@
         android:id="@+id/animationView"
         android:layout_width="match_parent"
         android:layout_height="175dp"
+        android:layout_marginVertical="@dimen/margin_space_40"
+        app:layout_constraintBottom_toTopOf="@id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
@@ -52,15 +55,17 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="@dimen/margin_space_40"
-        android:layout_marginTop="@dimen/default_space"
         android:layout_marginRight="@dimen/margin_space_40"
         android:background="@drawable/selector_button_blue"
         android:fontFamily="@font/nunito_sans_bold"
         android:text="@string/create_account"
         android:textColor="@color/blue_light2"
         android:textSize="@dimen/text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_button" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
