@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.onemoretick.R
 import com.example.onemoretick.helpers.UtilValidators
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
+import com.example.onemoretick.models.request.RegisterUserRequest
+import com.example.onemoretick.viewModel.LoginViewModel
+import com.example.onemoretick.viewModel.RegisterViewModel
 
 class RegisterFragment : Fragment() {
     //    private var auth: FirebaseAuth? = null
@@ -23,6 +27,8 @@ class RegisterFragment : Fragment() {
 //        auth = FirebaseAuth.getInstance()
 //        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
     }
+
+    private val registerViewModel by viewModels<RegisterViewModel>()
 
     override fun onStart() {
         super.onStart()
@@ -71,7 +77,13 @@ class RegisterFragment : Fragment() {
         } else {
             passwordEdtText.error = null
         }
-        //createDialog(email, password)
+        registerUser(email, password)
+    }
+
+    private fun registerUser(email: String, password: String): Boolean {
+        val registerUserRequest = RegisterUserRequest(email, password)
+        registerViewModel.registerUser(registerUserRequest)
+        return true
     }
 //
 //    private fun createFirebaseUser(

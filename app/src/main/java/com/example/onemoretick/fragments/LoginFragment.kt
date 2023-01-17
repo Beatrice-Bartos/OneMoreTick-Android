@@ -12,16 +12,18 @@ import androidx.fragment.app.Fragment
 import com.example.onemoretick.R
 import com.example.onemoretick.helpers.UtilValidators
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
-import com.google.firebase.auth.FirebaseAuth
+import com.example.onemoretick.models.request.LoginUserRequest
+import com.example.onemoretick.viewModel.LoginViewModel
+import androidx.fragment.app.viewModels
 
 class LoginFragment : Fragment() {
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null
 
-    // private var auth: FirebaseAuth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //auth = FirebaseAuth.getInstance()
     }
+
+    private val loginViewModel by viewModels<LoginViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -106,20 +108,16 @@ class LoginFragment : Fragment() {
         } else {
             passwordEdtText.error = null
         }
-        //loginFirebaseUser(email, password)
-        goToHomeActivity()
+        if (loginUser(email, password)) {
+            goToHomeActivity()
+        }
     }
 
-//    private fun loginFirebaseUser(email: String, password: String) {
-//        auth!!.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-//            if (task.isSuccessful) {
-//                goToHomeMapActivity()
-//                Toast.makeText(context, "Authentication success", Toast.LENGTH_SHORT).show()
-//            } else {
-//                Toast.makeText(context, "Authentication failed", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
+    private fun loginUser(email: String, password: String): Boolean {
+        val loginUserRequest = LoginUserRequest(email, password)
+        loginViewModel.loginUser(loginUserRequest)
+        return true
+    }
 
     private fun save(key: String, text: EditText) {
         val sharedPreferences =

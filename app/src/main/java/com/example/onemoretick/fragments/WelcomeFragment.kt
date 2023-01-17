@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.onemoretick.R
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
@@ -20,6 +22,7 @@ class WelcomeFragment : Fragment() {
     }
 
     override fun onAttach(context: Context) {
+        Toast.makeText(context, "A!", Toast.LENGTH_SHORT).show();
         super.onAttach(context)
         if (context is ActivitiesFragmentsCommunication) {
             fragmentsCommunication = context as ActivitiesFragmentsCommunication
@@ -28,7 +31,7 @@ class WelcomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<View>(R.id.login_button).setOnClickListener { goToLoginFragment() }
+        view.findViewById<Button>(R.id.login_button).setOnClickListener { goToLoginFragment() }
         view.findViewById<View>(R.id.register_button).setOnClickListener { goToRegisterFragment() }
     }
 
@@ -38,11 +41,11 @@ class WelcomeFragment : Fragment() {
 //        }
 //    }
     private fun goToLoginFragment() {
-//    fragmentsCommunication?.onReplaceFragment(LoginFragment.TAG_LOGIN)
+        fragmentsCommunication?.onReplaceFragment(LoginFragment.TAG_LOGIN)
     }
 
     private fun goToRegisterFragment() {
-//        fragmentsCommunication?.onReplaceFragment(RegisterFragment.TAG_REGISTER)
+        fragmentsCommunication?.onReplaceFragment(RegisterFragment.TAG_REGISTER)
     }
 
     companion object {
