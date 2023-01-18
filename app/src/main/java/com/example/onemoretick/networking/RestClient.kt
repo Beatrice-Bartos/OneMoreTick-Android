@@ -1,5 +1,6 @@
 package com.example.onemoretick.networking
 
+import com.example.onemoretick.models.request.CreateNewPasswordRequest
 import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.models.request.RegisterUserRequest
 import okhttp3.OkHttpClient
@@ -11,9 +12,10 @@ interface RestClient {
 
     suspend fun loginUser(request: LoginUserRequest): Response<Any>
     suspend fun registerUser(request: RegisterUserRequest): Response<Any>
-//    suspend fun verifyToken(userToken: VerifyTokenRequest): Response<Any>
+
+    //    suspend fun verifyToken(userToken: VerifyTokenRequest): Response<Any>
 //    suspend fun sendEmailResetPassword(username: String): ResetPasswordResponse
-//    suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest)
+    suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest): Response<Any>
 //    suspend fun getProducts(): List<ProductResponse>
 //    suspend fun getProductsById(productId: String): ProductResponse
 //    suspend fun getProductAndSuggestionsById(productId: String): ProductAndSuggestionsResponse
@@ -39,6 +41,11 @@ private class RetrofitRestClient : RestClient {
     ): Response<Any> {
         return api.registerUser(request)
     }
+
+    override suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest): Response<Any> {
+        return api.updatePassword(createNewPasswordRequest)
+    }
+
 //
 //    override suspend fun verifyToken(userToken: VerifyTokenRequest): Response<Any> {
 //        return api.verifyToken(userToken)

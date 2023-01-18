@@ -75,6 +75,44 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_text_input_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_space_40"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/margin_space_40"
+            android:hint="@string/password"
+            android:textColorHint="@color/blue_dark1"
+            app:boxBackgroundColor="@color/gray_light"
+            app:boxBackgroundMode="filled"
+            app:boxStrokeColor="@color/blue_dark1"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/blue_dark1"
+            app:hintTextColor="@color/blue_dark1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_text_input_layout"
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_text_input_editText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_field"
+                android:drawableStart="@drawable/password_icon"
+                android:fontFamily="@font/nunito_sans"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:minHeight="@dimen/height_field"
+                android:paddingStart="@dimen/default_padding"
+                android:paddingEnd="@dimen/default_padding"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/resetPassBtn"
             android:layout_width="match_parent"

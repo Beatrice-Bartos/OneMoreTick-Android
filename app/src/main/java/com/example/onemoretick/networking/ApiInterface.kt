@@ -1,5 +1,6 @@
 package com.example.onemoretick.networking
 
+import com.example.onemoretick.models.request.CreateNewPasswordRequest
 import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.models.request.RegisterUserRequest
 import retrofit2.Response
@@ -16,9 +17,9 @@ interface ApiInterface {
 //
 //    @POST("api/v1/reset_pass/requests/{email}")
 //    suspend fun sendEmailResetPassword(@Path("email") email: String): ResetPasswordResponse
-//
-//    @PUT("api/v1/reset_pass/update")
-//    suspend fun updatePassword(@Body updatePassword: CreateNewPasswordRequest)
+
+    @PUT("change_pass")
+    suspend fun updatePassword(@Body updatePassword: CreateNewPasswordRequest): Response<Any>
 //
 //    @POST("api/v1/auth/token")
 //    suspend fun verifyToken(@Body userToken: VerifyTokenRequest): Response<Any>

@@ -26,7 +26,7 @@
     <string name="user_email">User email</string>
     <string name="start">START</string>
     <string name="distance">Distance</string>
-    <string name="recovery_pass_text_1">Enter the email associated with your account and we\'ll send an email with instructions to reset your password.</string>
+    <string name="recovery_pass_text_1">Enter the email associated with your account and a new password for reset your password.</string>
     <string name="reset_password">Reset Password</string>
     <string name="register_text_1">Sign up and enjoy all the benefits.</string>
     <string name="register_now">Register now!</string>

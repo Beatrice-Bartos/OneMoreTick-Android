@@ -8,9 +8,14 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.onemoretick.R
 import com.example.onemoretick.helpers.UtilValidators
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
+import com.example.onemoretick.models.request.CreateNewPasswordRequest
+import com.example.onemoretick.models.request.LoginUserRequest
+import com.example.onemoretick.viewModel.ChangePasswordViewModel
+import com.example.onemoretick.viewModel.LoginViewModel
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -18,11 +23,12 @@ import com.google.firebase.auth.FirebaseAuth
 class ForgotPasswordFragment : Fragment() {
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null
 
-    //private var auth: FirebaseAuth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //auth = FirebaseAuth.getInstance()
     }
+
+    private val changePasswordViewModel by viewModels<ChangePasswordViewModel>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,37 +60,33 @@ class ForgotPasswordFragment : Fragment() {
         }
         val emailEdtText = requireView().findViewById<EditText>(R.id.email_text_input_editText)
         val email = emailEdtText.text.toString().trim { it <= ' ' }
+        val passwordEditText =
+            requireView().findViewById<EditText>(R.id.password_text_input_editText)
+        val password = passwordEditText.text.toString().trim { it <= ' ' }
+
         if (!UtilValidators.isValidEmail(email)) {
             emailEdtText.error = "Invalid Email"
             return
         } else {
             emailEdtText.error = null
         }
-        resetPassword(email)
+        if (!UtilValidators.isValidPassword(password)) {
+            passwordEditText.error = "Invalid Password"
+            return
+        } else {
+            passwordEditText.error = null
+        }
+        resetPassword(email, password)
     }
 
-    //    private fun resetPassword(email: String) {
-//        auth!!.sendPasswordResetEmail(email)
-//            .addOnCompleteListener(object : OnCompleteListener<Any?> {
-//                override fun onComplete(task: Task<*>) {
-//                    if (task.isSuccessful) {
-//                        Toast.makeText(
-//                            context,
-//                            "The email was sent successfully!",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                        goToLoginFragment()
-//                    } else {
-//                        Toast.makeText(
-//                            context,
-//                            "The email was not sent successfully!",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
-//                }
-//            })
-//    }
-    private fun resetPassword(email: String) {
+    private fun changePassword(email: String, password: String): Boolean {
+        val createNewPasswordRequest = CreateNewPasswordRequest(email, password)
+        changePasswordViewModel.changePassword(createNewPasswordRequest)
+        return true
+    }
+
+    private fun resetPassword(email: String, password: String) {
+        changePassword(email, password)
         Toast.makeText(
             context,
             "The email was sent successfully!",
