@@ -3,7 +3,9 @@ package com.example.onemoretick.networking
 import com.example.onemoretick.models.request.CreateNewPasswordRequest
 import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.models.request.RegisterUserRequest
+import com.example.onemoretick.models.result.RegisterUserResponse
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -11,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 interface RestClient {
 
     suspend fun loginUser(request: LoginUserRequest): Response<Any>
-    suspend fun registerUser(request: RegisterUserRequest): Response<Any>
+    suspend fun registerUser(request: RegisterUserRequest): Response<RegisterUserResponse>
 
     //    suspend fun verifyToken(userToken: VerifyTokenRequest): Response<Any>
 //    suspend fun sendEmailResetPassword(username: String): ResetPasswordResponse
@@ -38,7 +40,7 @@ private class RetrofitRestClient : RestClient {
 
     override suspend fun registerUser(
         request: RegisterUserRequest,
-    ): Response<Any> {
+    ): Response<RegisterUserResponse> {
         return api.registerUser(request)
     }
 
@@ -72,7 +74,13 @@ private class RetrofitRestClient : RestClient {
 //    }
 
     init {
-        val okHttpClient = OkHttpClient.Builder().addInterceptor(HeaderInterceptor()).build()
+        val okHttpClient = OkHttpClient
+            .Builder()
+            .addInterceptor(HeaderInterceptor())
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+            .build()
         retrofit = Retrofit.Builder()
             .baseUrl(ApiInterface.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

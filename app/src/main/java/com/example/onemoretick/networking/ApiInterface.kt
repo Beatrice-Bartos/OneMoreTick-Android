@@ -3,6 +3,7 @@ package com.example.onemoretick.networking
 import com.example.onemoretick.models.request.CreateNewPasswordRequest
 import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.models.request.RegisterUserRequest
+import com.example.onemoretick.models.result.RegisterUserResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -13,7 +14,7 @@ interface ApiInterface {
     suspend fun loginUser(@Body userToLogin: LoginUserRequest): Response<Any>
 
     @POST("register")
-    suspend fun registerUser(@Body userToRegister: RegisterUserRequest): Response<Any>
+    suspend fun registerUser(@Body userToRegister: RegisterUserRequest): Response<RegisterUserResponse>
 //
 //    @POST("api/v1/reset_pass/requests/{email}")
 //    suspend fun sendEmailResetPassword(@Path("email") email: String): ResetPasswordResponse
@@ -34,6 +35,6 @@ interface ApiInterface {
 //    suspend fun getProductAndSuggestionsById(@Path("productId") productId: String): ProductAndSuggestionsResponse
 
     companion object {
-        const val BASE_URL = "http://192.168.1.6:8080/"
+        const val BASE_URL = "http://192.168.1.131:8080/"
     }
 }

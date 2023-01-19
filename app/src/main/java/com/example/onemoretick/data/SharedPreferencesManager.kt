@@ -7,22 +7,24 @@ class SharedPreferencesManager private constructor(private val domainContext: Co
 
     val getLoggedInToken: Boolean
         get() {
-            val sharedPreferences = domainContext.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
+            val sharedPreferences =
+                domainContext.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
             return sharedPreferences.getString("Token", null) != null
         }
 
-    val userAppData: UserData
-        get() {
-            val sharedPreferences = domainContext.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
-            return UserData(
-                sharedPreferences.getString("Email", "") ?: "",
-                sharedPreferences.getString("Password", "") ?: ""
-                //sharedPreferences.getString("Token", "") ?: ""
-            )
-        }
+//    val userAppData: UserData
+//        get() {
+//            val sharedPreferences = domainContext.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
+//            return UserData(
+//                sharedPreferences.getString("Email", "") ?: "",
+//                sharedPreferences.getString("Password", "") ?: ""
+//                //sharedPreferences.getString("Token", "") ?: ""
+//            )
+//        }
 
     fun saveUserCredentials(user: UserData) {
-        val sharedPreferences = domainContext.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
+        val sharedPreferences =
+            domainContext.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
         editor.putString("Email", user.email)
@@ -41,7 +43,8 @@ class SharedPreferencesManager private constructor(private val domainContext: Co
 //    }
 
     fun clearSharedPreferences() {
-        val sharedPreferences = domainContext.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
+        val sharedPreferences =
+            domainContext.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.clear()
         editor.apply()
