@@ -3,6 +3,8 @@ package com.example.onemoretick.networking
 import com.example.onemoretick.models.request.CreateNewPasswordRequest
 import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.models.request.RegisterUserRequest
+import com.example.onemoretick.models.result.ChangePassUserResponse
+import com.example.onemoretick.models.result.LoginUserResponse
 import com.example.onemoretick.models.result.RegisterUserResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,12 +14,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 interface RestClient {
 
-    suspend fun loginUser(request: LoginUserRequest): Response<Any>
+    suspend fun loginUser(request: LoginUserRequest): Response<LoginUserResponse>
     suspend fun registerUser(request: RegisterUserRequest): Response<RegisterUserResponse>
 
     //    suspend fun verifyToken(userToken: VerifyTokenRequest): Response<Any>
 //    suspend fun sendEmailResetPassword(username: String): ResetPasswordResponse
-    suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest): Response<Any>
+    suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest): Response<ChangePassUserResponse>
 //    suspend fun getProducts(): List<ProductResponse>
 //    suspend fun getProductsById(productId: String): ProductResponse
 //    suspend fun getProductAndSuggestionsById(productId: String): ProductAndSuggestionsResponse
@@ -34,7 +36,7 @@ private class RetrofitRestClient : RestClient {
 
     override suspend fun loginUser(
         request: LoginUserRequest,
-    ): Response<Any> {
+    ): Response<LoginUserResponse> {
         return api.loginUser(request)
     }
 
@@ -44,7 +46,7 @@ private class RetrofitRestClient : RestClient {
         return api.registerUser(request)
     }
 
-    override suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest): Response<Any> {
+    override suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest): Response<ChangePassUserResponse> {
         return api.updatePassword(createNewPasswordRequest)
     }
 

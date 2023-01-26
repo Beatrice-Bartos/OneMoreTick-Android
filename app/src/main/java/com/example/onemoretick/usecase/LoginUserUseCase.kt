@@ -11,7 +11,6 @@ class LoginUserUseCase : UseCase<LoginUserRequest, Unit>(Dispatchers.IO) {
 
     override suspend fun execute(params: LoginUserRequest) {
         val response = restClient.loginUser(params)
-        Log.i("Response: ", response.toString())
 //        val tokenResponse = response.body().toString()
 //        val tokenValue = JSONObject(tokenResponse)
 //        val authToken = VerifyTokenRequest(tokenValue["token"].toString())
