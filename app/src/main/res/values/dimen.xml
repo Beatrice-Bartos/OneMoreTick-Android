@@ -8,7 +8,7 @@
     <dimen name="height_create_account_drawable">150dp</dimen>
     <dimen name="height_reset_pass_drawable">650dp</dimen>
     <dimen name="height_map_drawable">70dp</dimen>
-    <dimen name="height_header">200dp</dimen>
+    <dimen name="height_header">225dp</dimen>
 
     <!--    margin space-->
     <dimen name="small_margin">5dp</dimen>
