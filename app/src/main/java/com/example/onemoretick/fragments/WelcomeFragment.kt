@@ -22,7 +22,6 @@ class WelcomeFragment : Fragment() {
     }
 
     override fun onAttach(context: Context) {
-        Toast.makeText(context, "A!", Toast.LENGTH_SHORT).show();
         super.onAttach(context)
         if (context is ActivitiesFragmentsCommunication) {
             fragmentsCommunication = context as ActivitiesFragmentsCommunication

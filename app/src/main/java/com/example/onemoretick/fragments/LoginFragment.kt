@@ -1,6 +1,7 @@
 package com.example.onemoretick.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.viewModel.LoginViewModel
 import androidx.fragment.app.viewModels
+import com.example.onemoretick.MainActivity
+import com.example.onemoretick.activities.HomeActivity
 
 class LoginFragment : Fragment() {
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null
@@ -81,10 +84,10 @@ class LoginFragment : Fragment() {
     }
 
     private fun goToHomeActivity() {
-//        val intent = Intent(activity, HomeMapActivity::class.java)
-//        startActivity(intent)
-//        activity!!.finish()
         Toast.makeText(context, "Login success!", Toast.LENGTH_SHORT).show();
+        val intent = Intent(activity, HomeActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
     }
 
     private fun validateEmailAndPassword() {

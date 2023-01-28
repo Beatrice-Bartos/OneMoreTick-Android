@@ -16,7 +16,7 @@ class EditTaskFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_create_task, container, false)
+        return inflater.inflate(R.layout.fragment_edit_task, container, false)
     }
 
     override fun onAttach(context: Context) {

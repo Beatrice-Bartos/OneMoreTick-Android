@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_header"
+    android:background="@color/blue_dark1">
+
+    <!--    image view-->
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_sans_semibold_italic"
+        android:text="User Name"
+        android:textSize="@dimen/title_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/user_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_sans_semibold_italic"
+        android:text="User Email"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_name" />
+
+    <!--    <com.airbnb.lottie.LottieAnimationView-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/user_email"-->
+    <!--        android:id="@+id/animationView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="140dp"-->
+    <!--        app:lottie_url="https://assets9.lottiefiles.com/packages/lf20_ofzqf2m3.json"-->
+    <!--        app:lottie_autoPlay="true"-->
+    <!--        app:lottie_loop="true"/>-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
