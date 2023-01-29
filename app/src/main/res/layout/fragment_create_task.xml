@@ -166,7 +166,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/category_text_input_layout"
+        android:id="@+id/categories_spinner_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -178,7 +178,6 @@
         app:boxBackgroundColor="@color/gray_light"
         app:boxBackgroundMode="filled"
         app:boxStrokeColor="@color/blue_dark1"
-        app:endIconMode="clear_text"
         app:endIconTint="@color/blue_dark1"
         app:errorEnabled="true"
         app:hintTextColor="@color/blue_dark1"
@@ -187,19 +186,21 @@
         app:layout_constraintTop_toBottomOf="@+id/end_date_text_input_layout">
 
         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-            android:id="@+id/categoriesTextView"
+            android:id="@+id/categories_text_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_field"
             android:clickable="true"
+            android:fontFamily="@font/nunito_sans"
+            android:minHeight="@dimen/height_field"
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size"
             tools:ignore="KeyboardInaccessibleWidget" />
-
     </com.google.android.material.textfield.TextInputLayout>
 
-<!--    https://androidchunk.com/create-material-design-style-spinner-dropdown-in-android/-->
+
+    <!--    https://androidchunk.com/create-material-design-style-spinner-dropdown-in-android/-->
 
     <Button
         android:id="@+id/create_button"
@@ -216,6 +217,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/category_text_input_layout" />
+        app:layout_constraintTop_toBottomOf="@id/categories_spinner_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
