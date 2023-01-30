@@ -25,17 +25,20 @@
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/activity_home.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/activity_main.xml" value="0.2421875" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/activity_task.xml" value="0.3546875" />
+        <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/category_item_cell.xml" value="0.20380434782608695" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/content_main.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/drawer_header.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/drawer_toolbar.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/fragment_create_task.xml" value="0.3546875" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/fragment_edit_task.xml" value="0.3546875" />
+        <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/fragment_home.xml" value="0.11778115501519756" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/fragment_login.xml" value="0.2028985507246377" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/fragment_recovery_pass.xml" value="0.2028985507246377" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/fragment_register.xml" value="0.2028985507246377" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/fragment_welcome.xml" value="0.2028985507246377" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/login_fragment.xml" value="0.2421875" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/register_fragment.xml" value="0.2421875" />
+        <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/layout/task_item_cell.xml" value="0.20380434782608695" />
         <entry key="..\:/Users/barto/OneDrive/Desktop/Android/app/src/main/res/menu/drawer_menu.xml" value="0.2421875" />
       </map>
     </option>

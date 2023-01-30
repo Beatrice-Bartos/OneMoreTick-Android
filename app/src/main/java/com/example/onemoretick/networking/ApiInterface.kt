@@ -1,9 +1,11 @@
 package com.example.onemoretick.networking
 
 import com.example.onemoretick.models.request.CreateNewPasswordRequest
+import com.example.onemoretick.models.request.CreateTaskRequest
 import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.models.request.RegisterUserRequest
 import com.example.onemoretick.models.result.ChangePassUserResponse
+import com.example.onemoretick.models.result.CreateTaskResponse
 import com.example.onemoretick.models.result.LoginUserResponse
 import com.example.onemoretick.models.result.RegisterUserResponse
 import retrofit2.Response
@@ -23,9 +25,12 @@ interface ApiInterface {
 
     @PUT("change_pass")
     suspend fun updatePassword(@Body updatePassword: CreateNewPasswordRequest): Response<ChangePassUserResponse>
-//
-//    @POST("api/v1/auth/token")
-//    suspend fun verifyToken(@Body userToken: VerifyTokenRequest): Response<Any>
+
+    @POST("tasks/{userId}")
+    suspend fun createTask(
+        @Path("userId") userId: Int,
+        @Body createTaskRequest: CreateTaskRequest
+    ): CreateTaskResponse
 //
 //    @GET("api/v1/products")
 //    suspend fun getProducts(): List<ProductResponse>
@@ -37,6 +42,6 @@ interface ApiInterface {
 //    suspend fun getProductAndSuggestionsById(@Path("productId") productId: String): ProductAndSuggestionsResponse
 
     companion object {
-        const val BASE_URL = "http://192.168.1.175:8080/"
+        const val BASE_URL = "http://192.168.1.4:8080/"
     }
 }

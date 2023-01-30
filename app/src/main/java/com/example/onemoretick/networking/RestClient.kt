@@ -1,9 +1,11 @@
 package com.example.onemoretick.networking
 
 import com.example.onemoretick.models.request.CreateNewPasswordRequest
+import com.example.onemoretick.models.request.CreateTaskRequest
 import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.models.request.RegisterUserRequest
 import com.example.onemoretick.models.result.ChangePassUserResponse
+import com.example.onemoretick.models.result.CreateTaskResponse
 import com.example.onemoretick.models.result.LoginUserResponse
 import com.example.onemoretick.models.result.RegisterUserResponse
 import okhttp3.OkHttpClient
@@ -20,8 +22,12 @@ interface RestClient {
     //    suspend fun verifyToken(userToken: VerifyTokenRequest): Response<Any>
 //    suspend fun sendEmailResetPassword(username: String): ResetPasswordResponse
     suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest): Response<ChangePassUserResponse>
-//    suspend fun getProducts(): List<ProductResponse>
-//    suspend fun getProductsById(productId: String): ProductResponse
+
+    //    suspend fun getProducts(): List<ProductResponse>
+    suspend fun createTask(
+        userId: Int,
+        createTaskRequest: CreateTaskRequest
+    ): CreateTaskResponse
 //    suspend fun getProductAndSuggestionsById(productId: String): ProductAndSuggestionsResponse
 
     companion object {
@@ -48,6 +54,13 @@ private class RetrofitRestClient : RestClient {
 
     override suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest): Response<ChangePassUserResponse> {
         return api.updatePassword(createNewPasswordRequest)
+    }
+
+    override suspend fun createTask(
+        userId: Int,
+        createTaskRequest: CreateTaskRequest
+    ): CreateTaskResponse {
+        return api.createTask(userId, createTaskRequest)
     }
 
 //
