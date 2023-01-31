@@ -16,6 +16,6 @@ data class CreateTaskRequest(
     val isDone: Int,
     @SerializedName("idCategory")
     val idCategory: Int,
-    @SerializedName("startDate")
+    @SerializedName("idUser")
     val idUser: Int
 )

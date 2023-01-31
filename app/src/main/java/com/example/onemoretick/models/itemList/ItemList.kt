@@ -1,5 +1,8 @@
 package com.example.onemoretick.models.itemList
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.time.LocalDate
 
-data class ItemList(var id: Int, var name: String)
+@Parcelize
+data class ItemList(var id: Int, var name: String):Parcelable

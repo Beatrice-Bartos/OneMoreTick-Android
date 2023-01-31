@@ -71,6 +71,11 @@ class LoginFragment : Fragment() {
                 delete()
             }
         }
+
+//        loginViewModel.loginSuccess.observe(viewLifecycleOwner){ loginResponse ->
+//
+//
+//        }
     }
 
     private fun goToRegisterFragment() {

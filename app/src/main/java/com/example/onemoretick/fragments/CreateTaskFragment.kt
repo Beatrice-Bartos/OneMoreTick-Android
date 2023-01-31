@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.onemoretick.R
@@ -45,13 +46,13 @@ class CreateTaskFragment : Fragment() {
         val editTextDescription = view.findViewById<EditText>(R.id.description_text_input_editText)
         val editTextStartDate = view.findViewById<EditText>(R.id.start_date_text_input_editText)
         val editTextEndDate = view.findViewById<EditText>(R.id.end_date_text_input_editText)
-        val editTextCategory = view.findViewById<AutoCompleteTextView>(R.id.categoriesTextView)
+        val editTextCategory = view.findViewById<AppCompatAutoCompleteTextView>(R.id.categories_text_view)
         view.findViewById<View>(R.id.create_button).setOnClickListener {
-//            Toast.makeText(
-//                context,
-//                editTextCategory.text.toString(),
-//                Toast.LENGTH_SHORT
-//            ).show();
+            Toast.makeText(
+                context,
+                editTextCategory.text?.toString(),
+                Toast.LENGTH_SHORT
+            ).show();
             createTask(
                 editTextName.text.toString(),
                 editTextDescription.text.toString(),

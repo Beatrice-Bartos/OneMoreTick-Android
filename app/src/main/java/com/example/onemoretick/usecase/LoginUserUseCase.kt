@@ -3,13 +3,14 @@ package com.example.onemoretick.usecase
 import android.util.Log
 import com.example.onemoretick.models.base.UseCase
 import com.example.onemoretick.models.request.LoginUserRequest
+import com.example.onemoretick.models.result.LoginUserResponse
 import com.example.onemoretick.networking.RestClient
 import kotlinx.coroutines.Dispatchers
 
-class LoginUserUseCase : UseCase<LoginUserRequest, Unit>(Dispatchers.IO) {
+class LoginUserUseCase : UseCase<LoginUserRequest, LoginUserResponse>(Dispatchers.IO) {
     private val restClient = RestClient.INSTANCE
 
-    override suspend fun execute(params: LoginUserRequest) {
+    override suspend fun execute(params: LoginUserRequest) :LoginUserResponse {
         val response = restClient.loginUser(params)
 //        val tokenResponse = response.body().toString()
 //        val tokenValue = JSONObject(tokenResponse)
@@ -18,6 +19,7 @@ class LoginUserUseCase : UseCase<LoginUserRequest, Unit>(Dispatchers.IO) {
         if (!response.isSuccessful) {
             throw IllegalStateException("Bad Credentials")
         }
+        return response.body()!!
         //SharedPreferencesManager.domainPreferenceInstance!!.saveUserDataToken(authToken)
     }
 }
