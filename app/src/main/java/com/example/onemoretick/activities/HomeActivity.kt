@@ -14,6 +14,7 @@ import com.example.onemoretick.R
 import com.example.onemoretick.fragments.*
 import com.example.onemoretick.fragments.CreateTaskFragment.Companion.TAG_CREATE_TASK
 import com.example.onemoretick.fragments.EditTaskFragment.Companion.TAG_EDIT_TASK
+import com.example.onemoretick.fragments.HomeFragment.Companion.TAG_HOME
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.models.result.LoginUserResponse
 import com.google.android.material.navigation.NavigationView
@@ -75,18 +76,18 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         }
 
         if (savedInstanceState == null) {
-//            onAddFragment()
+            onAddFragment(response.id)
         }
     }
 
-//    private fun onAddFragment() {
-//        val fragmentManager = supportFragmentManager
-//        val fragment: Fragment
-//        fragment = EditTaskFragment.newInstance()
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.add(R.id.container_fragment, fragment, TAG_EDIT_TASK)
-//        fragmentTransaction.commit()
-//    }
+    private fun onAddFragment(userId: Int) {
+        val fragmentManager = supportFragmentManager
+        val fragment: Fragment
+        fragment = HomeFragment.newInstance(userId)
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.container_fragment, fragment, TAG_HOME)
+        fragmentTransaction.commit()
+    }
 
     private fun goToWelcome() {
         val intent = Intent(this, AuthActivity::class.java)
