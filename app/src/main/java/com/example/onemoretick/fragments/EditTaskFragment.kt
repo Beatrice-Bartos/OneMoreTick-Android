@@ -32,7 +32,7 @@ class EditTaskFragment : Fragment() {
 
     companion object {
         const val TAG_EDIT_TASK = "TAG_EDIT_TASK"
-        fun newInstance(): EditTaskFragment {
+        fun newInstance(userId: Int): EditTaskFragment {
             val args = Bundle()
             val fragment: EditTaskFragment = EditTaskFragment()
             fragment.arguments = args

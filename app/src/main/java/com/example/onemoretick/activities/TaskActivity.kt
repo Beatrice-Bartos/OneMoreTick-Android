@@ -11,7 +11,7 @@ class TaskActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         setContentView(R.layout.activity_task)
     }
 
-    override fun onReplaceFragment(TAG: String?) {
+    override fun onReplaceFragment(TAG: String?, userId: Int?) {
         TODO("Not yet implemented")
     }
 }

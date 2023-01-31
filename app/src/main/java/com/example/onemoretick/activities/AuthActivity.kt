@@ -32,7 +32,7 @@ class AuthActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         fragmentTransaction.commit()
     }
 
-    override fun onReplaceFragment(TAG: String?) {
+    override fun onReplaceFragment(TAG: String?, userId: Int?) {
         val fragmentManager = supportFragmentManager
 
         val fragment: Fragment = when (TAG) {

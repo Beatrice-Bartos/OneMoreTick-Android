@@ -15,6 +15,7 @@ import com.example.onemoretick.fragments.*
 import com.example.onemoretick.fragments.CreateTaskFragment.Companion.TAG_CREATE_TASK
 import com.example.onemoretick.fragments.EditTaskFragment.Companion.TAG_EDIT_TASK
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
+import com.example.onemoretick.models.result.LoginUserResponse
 import com.google.android.material.navigation.NavigationView
 
 class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
@@ -29,13 +30,14 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         setContentView(R.layout.activity_home)
         context = this
 
+        val response = this.intent.getParcelableExtra<LoginUserResponse>("Response")
+
         var navigationView = findViewById<NavigationView>(R.id.navigationView)
         val headerView = navigationView.getHeaderView(0)
         val navUsername = headerView.findViewById<TextView>(R.id.user_name)
         val navUserEmail = headerView.findViewById<TextView>(R.id.user_email)
 
-        navUserEmail.text = "test@gmail.com"
-        navUsername.text = "Test Test"
+        navUserEmail.text = response!!.email
 
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -55,7 +57,7 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
             }
             if (item.itemId == R.id.create_task) {
                 Toast.makeText(context, "Create task", Toast.LENGTH_SHORT).show();
-                onReplaceFragment(TAG_CREATE_TASK)
+                onReplaceFragment(TAG_CREATE_TASK, response.id)
             }
             if (item.itemId == R.id.shopping_lists) {
                 Toast.makeText(context, "Shopping lists", Toast.LENGTH_SHORT).show();
@@ -73,18 +75,18 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         }
 
         if (savedInstanceState == null) {
-            onAddFragment()
+//            onAddFragment()
         }
     }
 
-    private fun onAddFragment() {
-        val fragmentManager = supportFragmentManager
-        val fragment: Fragment
-        fragment = EditTaskFragment.newInstance()
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.container_fragment, fragment, TAG_EDIT_TASK)
-        fragmentTransaction.commit()
-    }
+//    private fun onAddFragment() {
+//        val fragmentManager = supportFragmentManager
+//        val fragment: Fragment
+//        fragment = EditTaskFragment.newInstance()
+//        val fragmentTransaction = fragmentManager.beginTransaction()
+//        fragmentTransaction.add(R.id.container_fragment, fragment, TAG_EDIT_TASK)
+//        fragmentTransaction.commit()
+//    }
 
     private fun goToWelcome() {
         val intent = Intent(this, AuthActivity::class.java)
@@ -92,15 +94,15 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         finish()
     }
 
-    override fun onReplaceFragment(TAG: String?) {
+    override fun onReplaceFragment(TAG: String?, userId: Int?) {
         val fragmentManager = supportFragmentManager
 
         val fragment: Fragment = when (TAG) {
             CreateTaskFragment.TAG_CREATE_TASK -> {
-                CreateTaskFragment.newInstance()
+                CreateTaskFragment.newInstance(userId!!)
             }
             EditTaskFragment.TAG_EDIT_TASK -> {
-                EditTaskFragment.newInstance()
+                EditTaskFragment.newInstance(userId!!)
             }
             WelcomeFragment.TAG_WELCOME -> {
                 WelcomeFragment.newInstance()

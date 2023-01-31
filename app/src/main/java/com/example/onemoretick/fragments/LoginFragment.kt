@@ -16,8 +16,8 @@ import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.viewModel.LoginViewModel
 import androidx.fragment.app.viewModels
-import com.example.onemoretick.MainActivity
 import com.example.onemoretick.activities.HomeActivity
+import com.example.onemoretick.models.result.LoginUserResponse
 
 class LoginFragment : Fragment() {
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null
@@ -72,10 +72,12 @@ class LoginFragment : Fragment() {
             }
         }
 
-//        loginViewModel.loginSuccess.observe(viewLifecycleOwner){ loginResponse ->
-//
-//
-//        }
+        loginViewModel.loginSuccess.observe(viewLifecycleOwner){ loginResponse ->
+            goToHomeActivity(loginResponse)
+        }
+        loginViewModel.error.observe(viewLifecycleOwner){ errorResponse ->
+            Toast.makeText(context, "Error logging in", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private fun goToRegisterFragment() {
@@ -88,9 +90,10 @@ class LoginFragment : Fragment() {
         fragmentsCommunication?.onReplaceFragment(ForgotPasswordFragment.TAG_FORGOT_PASS)
     }
 
-    private fun goToHomeActivity() {
+    private fun goToHomeActivity(loginResponse: LoginUserResponse) {
         Toast.makeText(context, "Login success!", Toast.LENGTH_SHORT).show();
         val intent = Intent(activity, HomeActivity::class.java)
+        intent.putExtra("Response", loginResponse)
         startActivity(intent)
         requireActivity().finish()
     }
@@ -116,15 +119,12 @@ class LoginFragment : Fragment() {
         } else {
             passwordEdtText.error = null
         }
-        if (loginUser(email, password)) {
-            goToHomeActivity()
-        }
+        loginUser(email, password)
     }
 
-    private fun loginUser(email: String, password: String): Boolean {
+    private fun loginUser(email: String, password: String) {
         val loginUserRequest = LoginUserRequest(email, password)
         loginViewModel.loginUser(loginUserRequest)
-        return true
     }
 
     private fun save(key: String, text: EditText) {

@@ -15,13 +15,12 @@ import androidx.fragment.app.viewModels
 import com.example.onemoretick.R
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.models.request.CreateTaskRequest
-import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.viewModel.CreateTaskViewModel
-import com.example.onemoretick.viewModel.LoginViewModel
 
 
-class CreateTaskFragment : Fragment() {
+class CreateTaskFragment(private var userId: Int) : Fragment() {
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null
+    private var categoriesList: ArrayList<String?> = arrayListOf()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,18 +45,16 @@ class CreateTaskFragment : Fragment() {
         val editTextDescription = view.findViewById<EditText>(R.id.description_text_input_editText)
         val editTextStartDate = view.findViewById<EditText>(R.id.start_date_text_input_editText)
         val editTextEndDate = view.findViewById<EditText>(R.id.end_date_text_input_editText)
-        val editTextCategory = view.findViewById<AppCompatAutoCompleteTextView>(R.id.categories_text_view)
+        val editTextCategory =
+            view.findViewById<AppCompatAutoCompleteTextView>(R.id.categories_text_view)
         view.findViewById<View>(R.id.create_button).setOnClickListener {
-            Toast.makeText(
-                context,
-                editTextCategory.text?.toString(),
-                Toast.LENGTH_SHORT
-            ).show();
             createTask(
                 editTextName.text.toString(),
                 editTextDescription.text.toString(),
                 editTextStartDate.text.toString(),
-                editTextEndDate.text.toString()
+                editTextEndDate.text.toString(),
+                categoriesList.indexOf(editTextCategory.text?.toString()) + 1,
+                userId
             )
         }
     }
@@ -68,7 +65,7 @@ class CreateTaskFragment : Fragment() {
             requireView().findViewById(R.id.categories_text_view)
 
         // create list of customer
-        val categoriesList = getCategoriesList()
+        categoriesList = getCategoriesList()
 
         //Create adapter
         val adapter: ArrayAdapter<String?> = ArrayAdapter(
@@ -91,7 +88,12 @@ class CreateTaskFragment : Fragment() {
     }
 
     private fun createTask(
-        name: String, description: String, startDate: String, endDate: String
+        name: String,
+        description: String,
+        startDate: String,
+        endDate: String,
+        idCategory: Int,
+        idUser: Int
     ): Boolean {
         Toast.makeText(
             context,
@@ -99,16 +101,16 @@ class CreateTaskFragment : Fragment() {
             Toast.LENGTH_SHORT
         ).show();
         val createTaskRequest =
-            CreateTaskRequest("Task", "description", "2023-01-01", "2023-01-01", 0, 1, 5)
+            CreateTaskRequest(name, description, startDate, endDate, 0, idCategory, idUser)
         createTaskViewModel.createTask(createTaskRequest)
         return true
     }
 
     companion object {
         const val TAG_CREATE_TASK = "TAG_CREATE_TASK"
-        fun newInstance(): CreateTaskFragment {
+        fun newInstance(userId: Int): CreateTaskFragment {
             val args = Bundle()
-            val fragment: CreateTaskFragment = CreateTaskFragment()
+            val fragment = CreateTaskFragment(userId)
             fragment.arguments = args
             return fragment
         }
