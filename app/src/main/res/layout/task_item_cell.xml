@@ -4,72 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:layout_margin="10dp"
+    android:background="@drawable/shape_task"
     android:padding="@dimen/default_margin">
 
     <TextView
-        android:id="@+id/txt_name"
+        android:id="@+id/task_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="@dimen/small_text_size"
-        android:textStyle="bold|italic"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/medium_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Name" />
 
     <TextView
-        android:id="@+id/txt_description"
+        android:id="@+id/task_start_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/blue_dark3"
         android:textSize="@dimen/small_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_name"
-        tools:text="Description" />
-
-    <TextView
-        android:id="@+id/start_date_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="@dimen/small_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_description"
+        app:layout_constraintTop_toBottomOf="@id/task_name"
         tools:text="Start Date" />
 
     <TextView
-        android:id="@+id/end_date_txt"
+        android:id="@+id/task_end_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/blue_dark3"
         android:textSize="@dimen/small_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/start_date_txt"
+        app:layout_constraintStart_toEndOf="@id/task_start_date"
+        app:layout_constraintTop_toBottomOf="@id/task_name"
         tools:text="End Date" />
 
-    <Button
-        android:id="@+id/edit_btn"
+    <TextView
+        android:id="@+id/task_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_button_orange"
-        android:fontFamily="@font/nunito_sans_bold"
-        android:text="Edit"
-        android:textColor="@color/gray_light"
+        android:layout_marginTop="@dimen/default_margin"
+        android:textColor="@color/blue_dark3"
         android:textSize="@dimen/small_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/end_date_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/task_start_date"
+        tools:text="Description" />
 
-    <Button
-        android:id="@+id/delete_btn"
+    <ImageButton
+        android:id="@+id/task_edit_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_button_orange"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginRight="10dp"
+        android:background="@null"
         android:fontFamily="@font/nunito_sans_bold"
-        android:text="Delete Task"
-        android:textColor="@color/gray_light"
+        android:padding="5dp"
+        android:src="@drawable/edit_icon"
         android:textSize="@dimen/small_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_btn" />
+        app:layout_constraintEnd_toStartOf="@id/task_delete_btn"
+        app:layout_constraintTop_toBottomOf="@id/task_description" />
+
+    <ImageButton
+        android:id="@+id/task_delete_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:background="@null"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:padding="5dp"
+        android:src="@drawable/delete_icon"
+        android:textSize="@dimen/small_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/task_description" />
+
+    <!--    <Button-->
+    <!--        android:id="@+id/task_edit_btn"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="@dimen/default_margin"-->
+    <!--        android:background="@drawable/shape_button_orange"-->
+    <!--        android:fontFamily="@font/nunito_sans_bold"-->
+    <!--        android:text="Edit"-->
+    <!--        android:textColor="@color/gray_light"-->
+    <!--        android:textSize="@dimen/small_text_size"-->
+    <!--        app:layout_constraintEnd_toStartOf="@id/task_delete_btn"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/task_description" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/task_delete_btn"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="@dimen/default_margin"-->
+    <!--        android:background="@drawable/shape_button_orange"-->
+    <!--        android:fontFamily="@font/nunito_sans_bold"-->
+    <!--        android:text="Delete"-->
+    <!--        android:textColor="@color/gray_light"-->
+    <!--        android:textSize="@dimen/small_text_size"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/task_description" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

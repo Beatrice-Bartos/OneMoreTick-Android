@@ -13,6 +13,7 @@ import com.example.onemoretick.adapters.CategoryAdapter
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.interfaces.OnItemClick
 import com.example.onemoretick.models.category.Category
+import com.example.onemoretick.models.task.Task
 
 class HomeFragment : Fragment() {
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null
@@ -20,6 +21,10 @@ class HomeFragment : Fragment() {
     private var adapter: CategoryAdapter = CategoryAdapter(categories, object : OnItemClick {
         override fun categoryItemClick(category: Category?) {
             // TODO: Process category click
+        }
+
+        override fun taskItemClick(task: Task?) {
+            TODO("Not yet implemented")
         }
     })
 
