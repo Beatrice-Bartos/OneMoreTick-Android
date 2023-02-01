@@ -17,7 +17,6 @@ import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.models.request.CreateTaskRequest
 import com.example.onemoretick.viewModel.CreateTaskViewModel
 
-
 class CreateTaskFragment(private var userId: Int) : Fragment() {
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null
     private var categoriesList: ArrayList<String?> = arrayListOf()
@@ -34,7 +33,7 @@ class CreateTaskFragment(private var userId: Int) : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is ActivitiesFragmentsCommunication) {
-            fragmentsCommunication = context as ActivitiesFragmentsCommunication
+            fragmentsCommunication = context
         }
     }
 

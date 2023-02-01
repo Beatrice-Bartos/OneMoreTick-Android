@@ -3,6 +3,7 @@ package com.example.onemoretick.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -16,9 +17,11 @@ import com.example.onemoretick.fragments.CreateTaskFragment.Companion.TAG_CREATE
 import com.example.onemoretick.fragments.HomeFragment.Companion.TAG_HOME
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.models.result.LoginUserResponse
+import com.example.onemoretick.models.result.TaskResponse
 import com.google.android.material.navigation.NavigationView
 
 class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
+    private var homeFragment: HomeFragment? = null
     private var drawerLayout: DrawerLayout? = null
     private var toggle: ActionBarDrawerToggle? = null
     private var toolbar: Toolbar? = null
@@ -52,7 +55,7 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         navigationView.setNavigationItemSelectedListener { item ->
             if (item.itemId == R.id.all_tasks) {
                 Toast.makeText(context, "All tasks", Toast.LENGTH_SHORT).show();
-                onReplaceFragment(TAG_HOME,response.id)
+                onReplaceFragment(TAG_HOME, response.id)
             }
             if (item.itemId == R.id.create_task) {
                 Toast.makeText(context, "Create task", Toast.LENGTH_SHORT).show();
@@ -82,6 +85,7 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         val fragmentManager = supportFragmentManager
         val fragment: Fragment
         fragment = HomeFragment.newInstance(userId)
+        homeFragment = fragment
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.container_fragment, fragment, TAG_HOME)
         fragmentTransaction.commit()
@@ -93,18 +97,18 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         finish()
     }
 
-    override fun onReplaceFragment(TAG: String?, userId: Int?) {
+    override fun onReplaceFragment(TAG: String?, userId: Int?, task: TaskResponse?) {
         val fragmentManager = supportFragmentManager
 
         val fragment: Fragment = when (TAG) {
-            HomeFragment.TAG_HOME-> {
+            TAG_HOME -> {
                 HomeFragment.newInstance(userId!!)
             }
-            CreateTaskFragment.TAG_CREATE_TASK -> {
+            TAG_CREATE_TASK -> {
                 CreateTaskFragment.newInstance(userId!!)
             }
             EditTaskFragment.TAG_EDIT_TASK -> {
-                EditTaskFragment.newInstance(userId!!)
+                EditTaskFragment.newInstance(task!!)
             }
             WelcomeFragment.TAG_WELCOME -> {
                 WelcomeFragment.newInstance()
@@ -114,7 +118,21 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.container_fragment, fragment, TAG)
 
+        homeFragment = if (fragment is HomeFragment) {
+            fragment
+        } else {
+            null
+        }
+
         fragmentTransaction.addToBackStack(TAG)
         fragmentTransaction.commit()
+    }
+
+    fun onClickTaskEditButton(v: View) {
+        homeFragment?.onClickTaskEditButton(v)
+    }
+
+    fun onClickTaskDeleteButton(v: View) {
+        homeFragment?.onClickTaskDeleteButton(v)
     }
 }

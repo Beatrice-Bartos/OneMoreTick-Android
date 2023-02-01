@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onemoretick.R
-import com.example.onemoretick.interfaces.OnItemClick
-import com.example.onemoretick.models.task.Task
+import com.example.onemoretick.fragments.HomeFragment
+import com.example.onemoretick.models.result.TaskResponse
 
 class TaskAdapter(
-    private val taskList: ArrayList<Task>,
-    private val onItemClick: OnItemClick?
+    private val homeFragment: HomeFragment,
+    private val taskList: ArrayList<TaskResponse>
 ) :
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     override fun onCreateViewHolder(
@@ -25,7 +25,7 @@ class TaskAdapter(
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val task: Task = taskList[position]
+        val task: TaskResponse = taskList[position]
         holder.bind(task)
     }
 
@@ -40,17 +40,13 @@ class TaskAdapter(
         private val taskItemEndDate: TextView = view.findViewById(R.id.task_end_date)
         private val taskItemDescription: TextView = view.findViewById(R.id.task_description)
 
-        fun bind(task: Task) {
+        fun bind(task: TaskResponse) {
             taskItemTitle.text = task.title
-            taskItemStartDate.text = task.startDate.toString()
-            taskItemEndDate.text = task.endDate.toString()
+            taskItemStartDate.text = task.startDate
+            taskItemEndDate.text = task.endDate
             taskItemDescription.text = task.description
-
-            view.setOnClickListener {
-//                onItemClick?.taskItemClick(task)
-            }
+            
+            view.setOnClickListener { homeFragment.selectedTask = task }
         }
-
     }
-
 }

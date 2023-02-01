@@ -14,6 +14,7 @@ import com.example.onemoretick.fragments.RegisterFragment.Companion.TAG_REGISTER
 import com.example.onemoretick.fragments.WelcomeFragment
 import com.example.onemoretick.fragments.WelcomeFragment.Companion.TAG_WELCOME
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
+import com.example.onemoretick.models.result.TaskResponse
 
 class AuthActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class AuthActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         fragmentTransaction.commit()
     }
 
-    override fun onReplaceFragment(TAG: String?, userId: Int?) {
+    override fun onReplaceFragment(TAG: String?, userId: Int?, task: TaskResponse?) {
         val fragmentManager = supportFragmentManager
 
         val fragment: Fragment = when (TAG) {

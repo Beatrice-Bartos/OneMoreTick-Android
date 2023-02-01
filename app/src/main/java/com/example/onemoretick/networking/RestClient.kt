@@ -5,7 +5,7 @@ import com.example.onemoretick.models.request.CreateTaskRequest
 import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.models.request.RegisterUserRequest
 import com.example.onemoretick.models.result.ChangePassUserResponse
-import com.example.onemoretick.models.result.CreateTaskResponse
+import com.example.onemoretick.models.result.TaskResponse
 import com.example.onemoretick.models.result.LoginUserResponse
 import com.example.onemoretick.models.result.RegisterUserResponse
 import okhttp3.OkHttpClient
@@ -13,6 +13,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Path
 
 interface RestClient {
 
@@ -22,12 +23,13 @@ interface RestClient {
     //    suspend fun verifyToken(userToken: VerifyTokenRequest): Response<Any>
 //    suspend fun sendEmailResetPassword(username: String): ResetPasswordResponse
     suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest): Response<ChangePassUserResponse>
+    suspend fun getTasksByUserId(userId: Int): List<TaskResponse>
 
     //    suspend fun getProducts(): List<ProductResponse>
     suspend fun createTask(
         userId: Int,
         createTaskRequest: CreateTaskRequest
-    ): CreateTaskResponse
+    ): TaskResponse
 //    suspend fun getProductAndSuggestionsById(productId: String): ProductAndSuggestionsResponse
 
     companion object {
@@ -59,8 +61,12 @@ private class RetrofitRestClient : RestClient {
     override suspend fun createTask(
         userId: Int,
         createTaskRequest: CreateTaskRequest
-    ): CreateTaskResponse {
+    ): TaskResponse {
         return api.createTask(userId, createTaskRequest)
+    }
+
+    override suspend fun getTasksByUserId(userId: Int): List<TaskResponse> {
+        return api.getTasksByUserId(userId)
     }
 
 //
@@ -78,10 +84,6 @@ private class RetrofitRestClient : RestClient {
 //
 //    override suspend fun getProducts(): List<ProductResponse> {
 //        return api.getProducts()
-//    }
-//
-//    override suspend fun getProductsById(productId: String): ProductResponse {
-//        return api.getProductById(productId)
 //    }
 //
 //    override suspend fun getProductAndSuggestionsById(productId: String): ProductAndSuggestionsResponse {

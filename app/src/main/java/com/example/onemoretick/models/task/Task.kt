@@ -11,5 +11,7 @@ data class Task(
     var description: String,
     var startDate: LocalDate,
     var endDate: LocalDate,
-    var isDone: Int
+    var isDone: Int,
+    val isCategory: Int,
+    val idUser: Int
 ): Parcelable

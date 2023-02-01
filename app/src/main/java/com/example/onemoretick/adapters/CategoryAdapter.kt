@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onemoretick.R
-import com.example.onemoretick.interfaces.OnItemClick
+import com.example.onemoretick.interfaces.OnCategoryItemClick
 import com.example.onemoretick.models.category.Category
 
 class CategoryAdapter(
     private val categoryList: ArrayList<Category>,
-    private val onItemClick: OnItemClick?
+    private val onCategoryItemClick: OnCategoryItemClick?
 ) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
     override fun onCreateViewHolder(
@@ -39,7 +39,7 @@ class CategoryAdapter(
         fun bind(category: Category) {
             categoryItemTitle.text = category.name
             view.setOnClickListener {
-                onItemClick?.categoryItemClick(category)
+                onCategoryItemClick?.categoryItemClick(category)
             }
         }
 

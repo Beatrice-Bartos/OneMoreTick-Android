@@ -1,8 +1,6 @@
 package com.example.onemoretick.models.result
 
-import java.time.LocalDate
-
-data class CreateTaskResponse(
+data class TaskResponse(
     val id: Int,
     val title: String,
     val description: String,
