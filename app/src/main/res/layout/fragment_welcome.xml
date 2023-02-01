@@ -14,15 +14,15 @@
         android:text="@string/title"
         android:textColor="@color/blue"
         android:textSize="@dimen/title_text_size"
-        app:layout_constraintBottom_toTopOf="@id/animationView"
+        app:layout_constraintBottom_toTopOf="@id/animation_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationView"
+        android:id="@+id/animation_view"
         android:layout_width="match_parent"
-        android:layout_height="175dp"
+        android:layout_height="@dimen/height_animation_welcome"
         android:layout_marginVertical="@dimen/margin_space_40"
         app:layout_constraintBottom_toTopOf="@id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,12 +42,12 @@
         android:fontFamily="@font/nunito_sans_bold"
         android:text="@string/login"
         android:textColor="@color/blue_light2"
-        android:textSize="@dimen/text_size"
+        android:textSize="@dimen/small_text_size"
         app:layout_constraintBottom_toTopOf="@+id/register_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/animationView" />
+        app:layout_constraintTop_toBottomOf="@id/animation_view" />
 
 
     <Button
@@ -60,7 +60,7 @@
         android:fontFamily="@font/nunito_sans_bold"
         android:text="@string/create_account"
         android:textColor="@color/blue_light2"
-        android:textSize="@dimen/text_size"
+        android:textSize="@dimen/small_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.08"

@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpRecyclerView(view.findViewById(R.id.category_list))
+        setUpRecyclerView(view.findViewById(R.id.categories_list))
     }
 
     private fun setUpRecyclerView(recyclerView: RecyclerView) {

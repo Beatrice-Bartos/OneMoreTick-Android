@@ -7,12 +7,12 @@
     android:background="@color/gray_light">
 
     <TextView
-        android:id="@+id/create_task_name_page"
+        android:id="@+id/edit_task_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginHorizontal="@dimen/margin_space_40"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="95dp"
         android:fontFamily="@font/nunito_sans_semibold"
         android:text="Edit your task!"
         android:textColor="@color/orange"
@@ -22,12 +22,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/name_text_input_layout"
+        android:id="@+id/edit_task_name_text_input_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_space_40"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/margin_space_30"
         android:layout_marginRight="@dimen/margin_space_40"
         android:hint="Name"
         android:textColorHint="@color/blue_dark1"
@@ -40,10 +40,10 @@
         app:hintTextColor="@color/blue_dark1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_task_name_page">
+        app:layout_constraintTop_toBottomOf="@+id/edit_task_txt">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/name_text_input_editText"
+            android:id="@+id/edit_task_name_text_input_editText"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_field"
             android:fontFamily="@font/nunito_sans"
@@ -53,17 +53,17 @@
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/small_text_size" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/description_text_input_layout"
+        android:id="@+id/edit_task_description_text_input_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_space_40"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/default_space"
         android:layout_marginRight="@dimen/margin_space_40"
         android:hint="Description"
         android:textColorHint="@color/blue_dark1"
@@ -76,10 +76,10 @@
         app:hintTextColor="@color/blue_dark1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_text_input_layout">
+        app:layout_constraintTop_toBottomOf="@+id/edit_task_name_text_input_layout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/description_text_input_editText"
+            android:id="@+id/edit_task_description_text_input_editText"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_field"
             android:fontFamily="@font/nunito_sans"
@@ -89,17 +89,17 @@
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/small_text_size" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/start_date_text_input_layout"
+        android:id="@+id/edit_task_start_date_text_input_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_space_40"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/default_space"
         android:layout_marginRight="@dimen/margin_space_40"
         android:hint="Start Date"
         android:textColorHint="@color/blue_dark1"
@@ -112,30 +112,30 @@
         app:hintTextColor="@color/blue_dark1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_text_input_layout">
+        app:layout_constraintTop_toBottomOf="@+id/edit_task_description_text_input_layout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/start_date_text_input_editText"
+            android:id="@+id/edit_task_start_date_text_input_editText"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_field"
             android:fontFamily="@font/nunito_sans"
             android:inputType="textEmailAddress"
-            android:maxLines="3"
+            android:maxLines="1"
             android:minHeight="@dimen/height_field"
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/small_text_size" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/end_date_text_input_layout"
+        android:id="@+id/edit_task_end_date_text_input_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_space_40"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/default_space"
         android:layout_marginRight="@dimen/margin_space_40"
         android:hint="End Date"
         android:textColorHint="@color/blue_dark1"
@@ -148,61 +148,62 @@
         app:hintTextColor="@color/blue_dark1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_date_text_input_layout">
+        app:layout_constraintTop_toBottomOf="@+id/edit_task_start_date_text_input_layout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/end_date_text_input_editText"
+            android:id="@+id/edit_task_end_date_text_input_editText"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_field"
             android:fontFamily="@font/nunito_sans"
             android:inputType="textEmailAddress"
-            android:maxLines="3"
+            android:maxLines="1"
             android:minHeight="@dimen/height_field"
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/small_text_size" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/category_text_input_layout"
+        android:id="@+id/edit_task_categories_spinner_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_space_40"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/default_space"
         android:layout_marginRight="@dimen/margin_space_40"
         android:hint="Categories"
         android:textColorHint="@color/blue_dark1"
         app:boxBackgroundColor="@color/gray_light"
         app:boxBackgroundMode="filled"
         app:boxStrokeColor="@color/blue_dark1"
-        app:endIconMode="clear_text"
         app:endIconTint="@color/blue_dark1"
         app:errorEnabled="true"
         app:hintTextColor="@color/blue_dark1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/end_date_text_input_layout">
+        app:layout_constraintTop_toBottomOf="@+id/edit_task_end_date_text_input_layout">
 
         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-            android:id="@+id/categoriesTextView"
+            android:id="@+id/edit_task_categories_text_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_field"
             android:clickable="true"
+            android:fontFamily="@font/nunito_sans"
+            android:minHeight="@dimen/height_field"
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size"
+            android:textSize="@dimen/small_text_size"
             tools:ignore="KeyboardInaccessibleWidget" />
-
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <!--    https://androidchunk.com/create-material-design-style-spinner-dropdown-in-android/-->
 
     <Button
-        android:id="@+id/create_button"
+        android:id="@+id/edit_task_button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/margin_space_40"
@@ -211,11 +212,11 @@
         android:fontFamily="@font/nunito_sans_bold"
         android:text="Save"
         android:textColor="@color/gray_light"
-        android:textSize="@dimen/text_size"
+        android:textSize="@dimen/small_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/category_text_input_layout" />
+        app:layout_constraintTop_toBottomOf="@id/edit_task_categories_spinner_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

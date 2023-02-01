@@ -35,9 +35,9 @@ class CategoryAdapter(
 
     inner class CategoryViewHolder(private val view: View) :
         RecyclerView.ViewHolder(view) {
-        private val title: TextView = view.findViewById(R.id.title)
+        private val categoryItemTitle: TextView = view.findViewById(R.id.category_item_title)
         fun bind(category: Category) {
-            title.text = category.name
+            categoryItemTitle.text = category.name
             view.setOnClickListener {
                 onItemClick?.categoryItemClick(category)
             }

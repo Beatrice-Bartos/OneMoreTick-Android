@@ -18,7 +18,7 @@
     <item
         android:id="@+id/shopping_lists"
         android:fontFamily="@font/nunito_sans_semibold"
-        android:icon="@drawable/shopping_list"
+        android:icon="@drawable/shopping_list_icon"
         android:title="@string/shopping_lists" />
     <item
         android:fontFamily="@font/nunito_sans_semibold"

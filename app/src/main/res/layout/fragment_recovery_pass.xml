@@ -5,9 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/gray_light">
 
-
     <LinearLayout
-        android:id="@+id/recoveryPasswordLinearLayout"
+        android:id="@+id/recovery_password_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_reset_pass_drawable"
         android:background="@drawable/solid_shape_light"
@@ -18,7 +17,7 @@
 
 
         <TextView
-            android:id="@+id/recoveryNamePage"
+            android:id="@+id/recovery_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -35,11 +34,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginHorizontal="@dimen/margin_space_40"
-            android:layout_marginTop="@dimen/margin_space_10"
+            android:layout_marginTop="@dimen/default_margin"
             android:fontFamily="@font/nunito_sans_semibold_italic"
             android:text="@string/recovery_pass_text_1"
             android:textColor="@color/gray_light"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/small_text_size" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -66,12 +65,11 @@
                 android:drawableStart="@drawable/email_icon"
                 android:fontFamily="@font/nunito_sans"
                 android:inputType="textEmailAddress"
-                android:maxLines="1"
                 android:minHeight="@dimen/height_field"
                 android:paddingStart="@dimen/default_padding"
                 android:paddingEnd="@dimen/default_padding"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size" />
+                android:textSize="@dimen/small_text_size" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_space_40"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/default_margin"
             android:layout_marginRight="@dimen/margin_space_40"
             android:hint="@string/password"
             android:textColorHint="@color/blue_dark1"
@@ -104,12 +102,11 @@
                 android:drawableStart="@drawable/password_icon"
                 android:fontFamily="@font/nunito_sans"
                 android:inputType="textPassword"
-                android:maxLines="1"
                 android:minHeight="@dimen/height_field"
                 android:paddingStart="@dimen/default_padding"
                 android:paddingEnd="@dimen/default_padding"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size" />
+                android:textSize="@dimen/small_text_size" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,8 +121,7 @@
             android:fontFamily="@font/nunito_sans_bold"
             android:text="@string/reset_password"
             android:textColor="@color/gray_light"
-            android:textSize="@dimen/text_size" />
-
+            android:textSize="@dimen/small_text_size" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

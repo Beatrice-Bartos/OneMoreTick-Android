@@ -47,7 +47,7 @@ class CreateTaskFragment(private var userId: Int) : Fragment() {
         val editTextEndDate = view.findViewById<EditText>(R.id.end_date_text_input_editText)
         val editTextCategory =
             view.findViewById<AppCompatAutoCompleteTextView>(R.id.categories_text_view)
-        view.findViewById<View>(R.id.create_button).setOnClickListener {
+        view.findViewById<View>(R.id.create_task_button).setOnClickListener {
             createTask(
                 editTextName.text.toString(),
                 editTextDescription.text.toString(),

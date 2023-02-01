@@ -19,7 +19,6 @@ class AuthActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         if (savedInstanceState == null) {
             onAddWelcomeFragment()
         }

@@ -4,20 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_button_orange"
+    android:layout_margin="@dimen/default_margin"
+    android:background="@drawable/shape_button_blue"
     android:clickable="true"
     android:focusable="true"
-    android:padding="@dimen/default_margin">
+    android:padding="@dimen/default_padding">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/category_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:textColor="@color/gray_light"
+        android:textSize="@dimen/small_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Title" />
+        tools:text="Category" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

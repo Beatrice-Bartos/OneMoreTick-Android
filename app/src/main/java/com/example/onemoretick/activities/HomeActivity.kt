@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import com.example.onemoretick.R
 import com.example.onemoretick.fragments.*
 import com.example.onemoretick.fragments.CreateTaskFragment.Companion.TAG_CREATE_TASK
-import com.example.onemoretick.fragments.EditTaskFragment.Companion.TAG_EDIT_TASK
 import com.example.onemoretick.fragments.HomeFragment.Companion.TAG_HOME
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.models.result.LoginUserResponse
@@ -33,9 +32,8 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
 
         val response = this.intent.getParcelableExtra<LoginUserResponse>("Response")
 
-        var navigationView = findViewById<NavigationView>(R.id.navigationView)
+        var navigationView = findViewById<NavigationView>(R.id.navigation_view)
         val headerView = navigationView.getHeaderView(0)
-        val navUsername = headerView.findViewById<TextView>(R.id.user_name)
         val navUserEmail = headerView.findViewById<TextView>(R.id.user_email)
 
         navUserEmail.text = response!!.email
@@ -44,7 +42,7 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         setSupportActionBar(toolbar)
         supportActionBar!!.title = "Dashboard"
         drawerLayout = findViewById(R.id.drawer)
-        navigationView = findViewById(R.id.navigationView)
+        navigationView = findViewById(R.id.navigation_view)
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
         drawerLayout!!.addDrawerListener(toggle!!)
@@ -54,7 +52,7 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         navigationView.setNavigationItemSelectedListener { item ->
             if (item.itemId == R.id.all_tasks) {
                 Toast.makeText(context, "All tasks", Toast.LENGTH_SHORT).show();
-//                onReplaceFragment(TAG_WALKS)
+                onReplaceFragment(TAG_HOME,response.id)
             }
             if (item.itemId == R.id.create_task) {
                 Toast.makeText(context, "Create task", Toast.LENGTH_SHORT).show();
@@ -99,6 +97,9 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         val fragmentManager = supportFragmentManager
 
         val fragment: Fragment = when (TAG) {
+            HomeFragment.TAG_HOME-> {
+                HomeFragment.newInstance(userId!!)
+            }
             CreateTaskFragment.TAG_CREATE_TASK -> {
                 CreateTaskFragment.newInstance(userId!!)
             }

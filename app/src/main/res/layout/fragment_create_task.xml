@@ -7,7 +7,7 @@
     android:background="@color/gray_light">
 
     <TextView
-        android:id="@+id/create_task_name_page"
+        android:id="@+id/create_task_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_space_40"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/margin_space_30"
         android:layout_marginRight="@dimen/margin_space_40"
         android:hint="Name"
         android:textColorHint="@color/blue_dark1"
@@ -40,20 +40,19 @@
         app:hintTextColor="@color/blue_dark1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_task_name_page">
+        app:layout_constraintTop_toBottomOf="@+id/create_task_txt">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/name_text_input_editText"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_field"
             android:fontFamily="@font/nunito_sans"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
+            android:inputType="text"
             android:minHeight="@dimen/height_field"
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/small_text_size" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_space_40"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/default_space"
         android:layout_marginRight="@dimen/margin_space_40"
         android:hint="Description"
         android:textColorHint="@color/blue_dark1"
@@ -83,13 +82,13 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_field"
             android:fontFamily="@font/nunito_sans"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:maxLines="3"
             android:minHeight="@dimen/height_field"
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/small_text_size" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_space_40"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/default_space"
         android:layout_marginRight="@dimen/margin_space_40"
         android:hint="Start Date"
         android:textColorHint="@color/blue_dark1"
@@ -119,13 +118,12 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_field"
             android:fontFamily="@font/nunito_sans"
-            android:inputType="textEmailAddress"
-            android:maxLines="3"
+            android:inputType="date"
             android:minHeight="@dimen/height_field"
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/small_text_size" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,7 +133,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_space_40"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/default_space"
         android:layout_marginRight="@dimen/margin_space_40"
         android:hint="End Date"
         android:textColorHint="@color/blue_dark1"
@@ -155,13 +153,12 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_field"
             android:fontFamily="@font/nunito_sans"
-            android:inputType="textEmailAddress"
-            android:maxLines="3"
+            android:inputType="date"
             android:minHeight="@dimen/height_field"
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/small_text_size" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -171,7 +168,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_space_40"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/default_space"
         android:layout_marginRight="@dimen/margin_space_40"
         android:hint="Categories"
         android:textColorHint="@color/blue_dark1"
@@ -195,7 +192,7 @@
             android:paddingStart="@dimen/default_padding"
             android:paddingEnd="@dimen/default_padding"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size"
+            android:textSize="@dimen/small_text_size"
             tools:ignore="KeyboardInaccessibleWidget" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -203,7 +200,7 @@
     <!--    https://androidchunk.com/create-material-design-style-spinner-dropdown-in-android/-->
 
     <Button
-        android:id="@+id/create_button"
+        android:id="@+id/create_task_button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/margin_space_40"
@@ -212,7 +209,7 @@
         android:fontFamily="@font/nunito_sans_bold"
         android:text="Create Task"
         android:textColor="@color/gray_light"
-        android:textSize="@dimen/text_size"
+        android:textSize="@dimen/small_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.08"

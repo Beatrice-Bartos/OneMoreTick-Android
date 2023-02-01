@@ -7,12 +7,13 @@
     android:background="@color/blue_dark1">
 
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/hello_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_space_20"
         android:fontFamily="@font/nunito_sans_semibold_italic"
-        android:text="User Name"
-        android:textSize="@dimen/title_text_size"
+        android:text="Hello,"
+        android:textSize="@dimen/medium_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,16 +24,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/nunito_sans_semibold_italic"
         android:text="User Email"
-        android:textSize="@dimen/text_size"
+        android:textSize="@dimen/medium_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/user_name" />
+        app:layout_constraintTop_toBottomOf="@id/hello_txt" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationView"
+        android:id="@+id/animation_view"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="@dimen/height_animation_drawer"
+        android:layout_marginTop="@dimen/margin_space_20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_email"
