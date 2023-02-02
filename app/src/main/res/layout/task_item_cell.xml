@@ -8,6 +8,13 @@
     android:background="@drawable/shape_task"
     android:padding="@dimen/default_margin">
 
+    <CheckBox
+        android:id="@+id/check_box_completed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/task_name"
         android:layout_width="wrap_content"
@@ -15,7 +22,7 @@
         android:fontFamily="@font/nunito_sans_bold"
         android:textColor="@color/orange"
         android:textSize="@dimen/medium_text_size"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/check_box_completed"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Name" />
 
