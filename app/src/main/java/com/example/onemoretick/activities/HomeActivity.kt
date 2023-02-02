@@ -129,8 +129,4 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
     fun onClickTaskEditButton(v: View) {
         homeFragment?.onClickTaskEditButton(v)
     }
-
-    fun onClickTaskDeleteButton(v: View) {
-        homeFragment?.onClickTaskDeleteButton(v)
-    }
 }

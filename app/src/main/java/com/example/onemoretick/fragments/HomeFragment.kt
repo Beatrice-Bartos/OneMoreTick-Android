@@ -17,7 +17,10 @@ import com.example.onemoretick.fragments.EditTaskFragment.Companion.TAG_EDIT_TAS
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.interfaces.OnCategoryItemClick
 import com.example.onemoretick.models.category.Category
+import com.example.onemoretick.models.request.DeleteTaskRequest
 import com.example.onemoretick.models.result.TaskResponse
+import com.example.onemoretick.viewModel.DeleteTaskViewModel
+import com.example.onemoretick.viewModel.EditTaskViewModel
 import com.example.onemoretick.viewModel.GetTasksViewModel
 
 class HomeFragment(private var userId: Int) : Fragment() {
@@ -33,6 +36,7 @@ class HomeFragment(private var userId: Int) : Fragment() {
         })
     private var taskAdapter: TaskAdapter = TaskAdapter(this, tasks)
     private val getTasksViewModel by viewModels<GetTasksViewModel>()
+    private val deleteTaskViewModel by viewModels<DeleteTaskViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,11 +68,12 @@ class HomeFragment(private var userId: Int) : Fragment() {
 
         getTasksViewModel.getTasks(userId)
         getTasksViewModel.getTasksSuccess.observe(viewLifecycleOwner) { tasksResponse ->
+            tasks.clear()
             tasksResponse.onEach { t -> tasks.add(t) }
             taskAdapter.notifyDataSetChanged()
         }
         getTasksViewModel.error.observe(viewLifecycleOwner) { errorResponse ->
-            Toast.makeText(context, "Error retrieving tasks", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Error retrieving tasks", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -88,8 +93,14 @@ class HomeFragment(private var userId: Int) : Fragment() {
         fragmentsCommunication?.onReplaceFragment(TAG_EDIT_TASK, task = selectedTask)
     }
 
-    fun onClickTaskDeleteButton(v: View) {
-
+    fun deleteTask(deleteTaskRequest: DeleteTaskRequest) {
+        deleteTaskViewModel.deleteTask(deleteTaskRequest)
+        deleteTaskViewModel.deleteTaskSuccess.observe(viewLifecycleOwner) {
+            getTasksViewModel.getTasks(userId)
+        }
+        deleteTaskViewModel.error.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "Error deleting task", Toast.LENGTH_SHORT).show()
+        }
     }
 
     companion object {
