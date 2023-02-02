@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.onemoretick.R
+import com.example.onemoretick.helpers.UtilValidators
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.models.request.CreateTaskRequest
 import com.example.onemoretick.viewModel.CreateTaskViewModel
@@ -47,14 +48,20 @@ class CreateTaskFragment(private var userId: Int) : Fragment() {
         val editTextCategory =
             view.findViewById<AppCompatAutoCompleteTextView>(R.id.categories_text_view)
         view.findViewById<View>(R.id.create_task_button).setOnClickListener {
-            createTask(
-                editTextName.text.toString(),
-                editTextDescription.text.toString(),
-                editTextStartDate.text.toString(),
-                editTextEndDate.text.toString(),
-                categoriesList.indexOf(editTextCategory.text?.toString()) + 1,
-                userId
-            )
+            if (!UtilValidators.isValidDate(editTextStartDate.text.toString())) {
+                editTextStartDate.error = "Date format is invalid. Use [yyyy-mm-dd]"
+            } else if (!UtilValidators.isValidDate(editTextEndDate.text.toString())) {
+                editTextEndDate.error = "Date format is invalid. Use [yyyy-mm-dd]"
+            } else {
+                createTask(
+                    editTextName.text.toString(),
+                    editTextDescription.text.toString(),
+                    editTextStartDate.text.toString(),
+                    editTextEndDate.text.toString(),
+                    categoriesList.indexOf(editTextCategory.text?.toString()) + 1,
+                    userId
+                )
+            }
         }
     }
 
@@ -94,11 +101,6 @@ class CreateTaskFragment(private var userId: Int) : Fragment() {
         idCategory: Int,
         idUser: Int
     ): Boolean {
-        Toast.makeText(
-            context,
-            "$name $description $startDate $endDate",
-            Toast.LENGTH_SHORT
-        ).show();
         val createTaskRequest =
             CreateTaskRequest(name, description, startDate, endDate, 0, idCategory, idUser)
         createTaskViewModel.createTask(createTaskRequest)

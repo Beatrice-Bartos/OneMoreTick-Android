@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.onemoretick.R
 import com.example.onemoretick.fragments.HomeFragment.Companion.TAG_HOME
+import com.example.onemoretick.helpers.UtilValidators
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.models.request.EditTaskRequest
 import com.example.onemoretick.models.result.TaskResponse
@@ -59,17 +60,23 @@ class EditTaskFragment(private val task: TaskResponse) : Fragment() {
         editTextEndDate.setText(task.endDate)
 
         view.findViewById<View>(R.id.edit_task_button).setOnClickListener {
-            val editTaskRequest = EditTaskRequest(
-                task.id,
-                editTextName.text.toString(),
-                editTextDescription.text.toString(),
-                editTextStartDate.text.toString(),
-                editTextEndDate.text.toString(),
-                task.isDone,
-                categoriesList.indexOf(editTextCategory.text?.toString()) + 1,
-                task.idUser
-            )
-            editTaskViewModel.editTask(editTaskRequest)
+            if (!UtilValidators.isValidDate(editTextStartDate.text.toString())) {
+                editTextStartDate.error = "Date format is invalid\nUse [yyyy-mm-dd]"
+            } else if (!UtilValidators.isValidDate(editTextEndDate.text.toString())) {
+                editTextEndDate.error = "Date format is invalid\nUse [yyyy-mm-dd]"
+            } else {
+                val editTaskRequest = EditTaskRequest(
+                    task.id,
+                    editTextName.text.toString(),
+                    editTextDescription.text.toString(),
+                    editTextStartDate.text.toString(),
+                    editTextEndDate.text.toString(),
+                    task.isDone,
+                    categoriesList.indexOf(editTextCategory.text?.toString()) + 1,
+                    task.idUser
+                )
+                editTaskViewModel.editTask(editTaskRequest)
+            }
         }
 
         editTaskViewModel.editTaskSuccess.observe(viewLifecycleOwner) {

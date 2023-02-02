@@ -2,6 +2,10 @@ package com.example.onemoretick.helpers
 
 import android.text.TextUtils
 import android.util.Patterns
+import com.example.onemoretick.models.base.Result
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 
 object UtilValidators {
     fun isValidEmail(email: String?): Boolean {
@@ -14,5 +18,14 @@ object UtilValidators {
 
     fun isNotEmptyInput(input: String?): Boolean {
         return !TextUtils.isEmpty(input)
+    }
+
+    fun isValidDate(date: String): Boolean {
+        try {
+            LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+        } catch (exception: DateTimeParseException) {
+            return false;
+        }
+        return true;
     }
 }
