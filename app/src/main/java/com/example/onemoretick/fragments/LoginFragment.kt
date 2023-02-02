@@ -75,7 +75,7 @@ class LoginFragment : Fragment() {
         loginViewModel.loginSuccess.observe(viewLifecycleOwner){ loginResponse ->
             goToHomeActivity(loginResponse)
         }
-        loginViewModel.error.observe(viewLifecycleOwner){ errorResponse ->
+        loginViewModel.error.observe(viewLifecycleOwner){
             Toast.makeText(context, "Error logging in", Toast.LENGTH_SHORT).show();
         }
     }

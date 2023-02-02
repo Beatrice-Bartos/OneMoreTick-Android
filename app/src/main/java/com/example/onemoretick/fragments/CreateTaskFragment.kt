@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.onemoretick.R
+import com.example.onemoretick.fragments.HomeFragment.Companion.TAG_HOME
 import com.example.onemoretick.helpers.UtilValidators
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.models.request.CreateTaskRequest
@@ -62,6 +63,13 @@ class CreateTaskFragment(private var userId: Int) : Fragment() {
                     userId
                 )
             }
+        }
+
+        createTaskViewModel.createTaskSuccess.observe(viewLifecycleOwner) { createTaskResponse ->
+            fragmentsCommunication?.onReplaceFragment(TAG_HOME, createTaskResponse.idUser)
+        }
+        createTaskViewModel.error.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "Error creating task", Toast.LENGTH_SHORT).show()
         }
     }
 
