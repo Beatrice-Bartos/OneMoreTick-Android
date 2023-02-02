@@ -10,5 +10,4 @@ data class LoginUserResponse(
     val id: Int,
     val email: String,
     val password: String,
-    val shoppingLists: List<ShoppingList>
 ) : Parcelable
