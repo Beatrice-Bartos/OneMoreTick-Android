@@ -5,13 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.EditText
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.onemoretick.R
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.models.result.TaskResponse
+import com.example.onemoretick.viewModel.EditTaskViewModel
 
 class EditTaskFragment(private val task: TaskResponse) : Fragment() {
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null
+    private var categoriesList: ArrayList<String?> = arrayListOf()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -20,11 +27,63 @@ class EditTaskFragment(private val task: TaskResponse) : Fragment() {
         return inflater.inflate(R.layout.fragment_edit_task, container, false)
     }
 
+    private val editTaskViewModel by viewModels<EditTaskViewModel>()
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is ActivitiesFragmentsCommunication) {
             fragmentsCommunication = context
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUI()
+
+        val editTextName = view.findViewById<EditText>(R.id.edit_task_name_text_input_editText)
+        val editTextDescription =
+            view.findViewById<EditText>(R.id.edit_task_description_text_input_editText)
+        val editTextStartDate =
+            view.findViewById<EditText>(R.id.edit_task_start_date_text_input_editText)
+        val editTextEndDate =
+            view.findViewById<EditText>(R.id.edit_task_end_date_text_input_editText)
+        val editTextCategory =
+            view.findViewById<AppCompatAutoCompleteTextView>(R.id.edit_task_categories_text_view)
+
+        editTextName.setText(task.title)
+        editTextDescription.setText(task.description)
+        editTextStartDate.setText(task.startDate)
+        editTextEndDate.setText(task.endDate)
+
+        view.findViewById<View>(R.id.edit_task_button).setOnClickListener {
+
+        }
+    }
+
+    private fun initUI() {
+        val categoriesAutoTV: AutoCompleteTextView =
+            requireView().findViewById(R.id.edit_task_categories_text_view)
+
+        categoriesList = getCategoriesList()
+
+        val adapter: ArrayAdapter<String?> = ArrayAdapter(
+            this.requireContext(),
+            android.R.layout.simple_spinner_item,
+            categoriesList
+        )
+
+        categoriesAutoTV.setAdapter(adapter)
+        categoriesAutoTV.setText(categoriesAutoTV.adapter.getItem(task.idCategory - 1).toString())
+        adapter.filter.filter(null)
+    }
+
+    private fun getCategoriesList(): ArrayList<String?> {
+        val categories: ArrayList<String?> = ArrayList()
+        categories.add("Work")
+        categories.add("School")
+        categories.add("Home")
+        categories.add("Other")
+        return categories
     }
 
     companion object {

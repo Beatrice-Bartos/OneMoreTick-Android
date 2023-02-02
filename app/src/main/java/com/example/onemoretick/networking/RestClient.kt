@@ -1,9 +1,6 @@
 package com.example.onemoretick.networking
 
-import com.example.onemoretick.models.request.CreateNewPasswordRequest
-import com.example.onemoretick.models.request.CreateTaskRequest
-import com.example.onemoretick.models.request.LoginUserRequest
-import com.example.onemoretick.models.request.RegisterUserRequest
+import com.example.onemoretick.models.request.*
 import com.example.onemoretick.models.result.ChangePassUserResponse
 import com.example.onemoretick.models.result.TaskResponse
 import com.example.onemoretick.models.result.LoginUserResponse
@@ -19,17 +16,26 @@ interface RestClient {
 
     suspend fun loginUser(request: LoginUserRequest): Response<LoginUserResponse>
     suspend fun registerUser(request: RegisterUserRequest): Response<RegisterUserResponse>
-
-    //    suspend fun verifyToken(userToken: VerifyTokenRequest): Response<Any>
-//    suspend fun sendEmailResetPassword(username: String): ResetPasswordResponse
     suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest): Response<ChangePassUserResponse>
     suspend fun getTasksByUserId(userId: Int): List<TaskResponse>
-
-    //    suspend fun getProducts(): List<ProductResponse>
     suspend fun createTask(
         userId: Int,
         createTaskRequest: CreateTaskRequest
     ): TaskResponse
+
+    suspend fun updateTask(
+        userId: Int,
+        updateTaskRequest: EditTaskRequest
+    ): TaskResponse
+
+    suspend fun deleteTask(
+        userId: Int,
+        taskId: Int
+    ): TaskResponse
+
+//    suspend fun verifyToken(userToken: VerifyTokenRequest): Response<Any>
+//    suspend fun sendEmailResetPassword(username: String): ResetPasswordResponse
+//    suspend fun getProducts(): List<ProductResponse>
 //    suspend fun getProductAndSuggestionsById(productId: String): ProductAndSuggestionsResponse
 
     companion object {
@@ -63,6 +69,14 @@ private class RetrofitRestClient : RestClient {
         createTaskRequest: CreateTaskRequest
     ): TaskResponse {
         return api.createTask(userId, createTaskRequest)
+    }
+
+    override suspend fun updateTask(userId: Int, updateTaskRequest: EditTaskRequest): TaskResponse {
+        return api.updateTask(userId, updateTaskRequest)
+    }
+
+    override suspend fun deleteTask(userId: Int, taskId: Int): TaskResponse {
+        return api.deleteTask(userId, taskId)
     }
 
     override suspend fun getTasksByUserId(userId: Int): List<TaskResponse> {

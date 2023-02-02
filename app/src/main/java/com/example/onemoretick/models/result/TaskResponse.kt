@@ -7,6 +7,6 @@ data class TaskResponse(
     val startDate: String,
     val endDate: String,
     val isDone: Int,
-    val isCategory: Int,
+    val idCategory: Int,
     val idUser: Int
 )
