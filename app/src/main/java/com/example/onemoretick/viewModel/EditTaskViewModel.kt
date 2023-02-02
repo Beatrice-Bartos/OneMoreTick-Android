@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class EditTaskViewModel : BaseViewModel() {
     private val editTaskUseCase = EditTaskUseCase()
-    private val editTaskSuccess = MutableLiveData<Boolean>()
+    val editTaskSuccess = MutableLiveData<Boolean>()
 
     fun editTask(editTaskRequest: EditTaskRequest) {
         viewModelScope.launch(Dispatchers.IO) {

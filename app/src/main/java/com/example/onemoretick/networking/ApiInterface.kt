@@ -49,7 +49,7 @@ interface ApiInterface {
 //    suspend fun sendEmailResetPassword(@Path("email") email: String): ResetPasswordResponse
 
     companion object {
-        //        const val BASE_URL = "http://192.168.1.175:8080/"
-        const val BASE_URL = "http://192.168.1.4:8080/"
+                const val BASE_URL = "http://192.168.1.175:8080/"
+//        const val BASE_URL = "http://192.168.1.4:8080/"
     }
 }

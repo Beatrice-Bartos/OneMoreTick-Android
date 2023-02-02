@@ -118,10 +118,8 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.container_fragment, fragment, TAG)
 
-        homeFragment = if (fragment is HomeFragment) {
-            fragment
-        } else {
-            null
+        if (fragment is HomeFragment) {
+            homeFragment = fragment
         }
 
         fragmentTransaction.addToBackStack(TAG)

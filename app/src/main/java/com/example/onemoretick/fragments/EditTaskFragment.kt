@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.onemoretick.R
+import com.example.onemoretick.fragments.HomeFragment.Companion.TAG_HOME
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
+import com.example.onemoretick.models.request.EditTaskRequest
 import com.example.onemoretick.models.result.TaskResponse
 import com.example.onemoretick.viewModel.EditTaskViewModel
 
@@ -56,7 +59,24 @@ class EditTaskFragment(private val task: TaskResponse) : Fragment() {
         editTextEndDate.setText(task.endDate)
 
         view.findViewById<View>(R.id.edit_task_button).setOnClickListener {
+            val editTaskRequest = EditTaskRequest(
+                task.id,
+                editTextName.text.toString(),
+                editTextDescription.text.toString(),
+                editTextStartDate.text.toString(),
+                editTextEndDate.text.toString(),
+                task.isDone,
+                categoriesList.indexOf(editTextCategory.text?.toString()) + 1,
+                task.idUser
+            )
+            editTaskViewModel.editTask(editTaskRequest)
+        }
 
+        editTaskViewModel.editTaskSuccess.observe(viewLifecycleOwner) {
+            fragmentsCommunication?.onReplaceFragment(TAG_HOME, task.idUser)
+        }
+        editTaskViewModel.error.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "Error saving task", Toast.LENGTH_SHORT).show()
         }
     }
 
