@@ -125,8 +125,4 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
         fragmentTransaction.addToBackStack(TAG)
         fragmentTransaction.commit()
     }
-
-    fun onClickTaskEditButton(v: View) {
-        homeFragment?.onClickTaskEditButton(v)
-    }
 }

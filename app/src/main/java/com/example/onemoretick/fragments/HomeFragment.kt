@@ -25,7 +25,6 @@ import com.example.onemoretick.viewModel.EditTaskViewModel
 import com.example.onemoretick.viewModel.GetTasksViewModel
 
 class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClickListener {
-    public var selectedTask: TaskResponse? = null
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null
     private var categories: ArrayList<Category> = arrayListOf()
     private var tasks: ArrayList<TaskResponse> = arrayListOf()
@@ -35,7 +34,7 @@ class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClic
                 // TODO: Process category click
             }
         })
-    private var taskAdapter: TaskAdapter = TaskAdapter(this, tasks, this)
+    private var taskAdapter: TaskAdapter = TaskAdapter(tasks, this)
     private val getTasksViewModel by viewModels<GetTasksViewModel>()
     private val editTaskViewModel by viewModels<EditTaskViewModel>()
     private val deleteTaskViewModel by viewModels<DeleteTaskViewModel>()
@@ -74,7 +73,7 @@ class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClic
             tasksResponse.onEach { t -> tasks.add(t) }
             taskAdapter.notifyDataSetChanged()
         }
-        getTasksViewModel.error.observe(viewLifecycleOwner) { errorResponse ->
+        getTasksViewModel.error.observe(viewLifecycleOwner) {
             Toast.makeText(context, "Error retrieving tasks", Toast.LENGTH_SHORT).show()
         }
     }
@@ -91,27 +90,13 @@ class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClic
         recyclerView.adapter = taskAdapter
     }
 
-    fun onClickTaskEditButton(v: View) {
-        fragmentsCommunication?.onReplaceFragment(TAG_EDIT_TASK, task = selectedTask)
-    }
-
-    fun deleteTask(deleteTaskRequest: DeleteTaskRequest) {
+    private fun deleteTask(deleteTaskRequest: DeleteTaskRequest) {
         deleteTaskViewModel.deleteTask(deleteTaskRequest)
         deleteTaskViewModel.deleteTaskSuccess.observe(viewLifecycleOwner) {
             getTasksViewModel.getTasks(userId)
         }
         deleteTaskViewModel.error.observe(viewLifecycleOwner) {
             Toast.makeText(context, "Error deleting task", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    companion object {
-        const val TAG_HOME = "TAG_HOME"
-        fun newInstance(userId: Int): HomeFragment {
-            val args = Bundle()
-            val fragment = HomeFragment(userId)
-            fragment.arguments = args
-            return fragment
         }
     }
 
@@ -127,5 +112,23 @@ class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClic
             task.idUser
         )
         editTaskViewModel.editTask(editTaskRequest)
+    }
+
+    override fun onEditClick(task: TaskResponse) {
+        fragmentsCommunication?.onReplaceFragment(TAG_EDIT_TASK, task = task)
+    }
+
+    override fun onDeleteClick(task: TaskResponse) {
+        deleteTask(DeleteTaskRequest(task.idUser, task.id))
+    }
+
+    companion object {
+        const val TAG_HOME = "TAG_HOME"
+        fun newInstance(userId: Int): HomeFragment {
+            val args = Bundle()
+            val fragment = HomeFragment(userId)
+            fragment.arguments = args
+            return fragment
+        }
     }
 }

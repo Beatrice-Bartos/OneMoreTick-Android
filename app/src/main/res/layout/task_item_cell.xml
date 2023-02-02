@@ -66,50 +66,24 @@
         android:layout_marginTop="@dimen/default_margin"
         android:layout_marginRight="10dp"
         android:background="@null"
+        android:clickable="true"
         android:fontFamily="@font/nunito_sans_bold"
-        android:onClick="onClickTaskEditButton"
         android:padding="5dp"
         android:src="@drawable/edit_icon"
         android:textSize="@dimen/small_text_size"
         app:layout_constraintEnd_toStartOf="@id/task_delete_btn"
         app:layout_constraintTop_toBottomOf="@id/task_description" />
 
-    <!--    <ImageButton-->
-    <!--        android:id="@+id/task_delete_btn"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="@dimen/default_margin"-->
-    <!--        android:background="@null"-->
-    <!--        android:fontFamily="@font/nunito_sans_bold"-->
-    <!--        android:onClick="onClickTaskDeleteButton"-->
-    <!--        android:padding="5dp"-->
-    <!--        android:src="@drawable/delete_icon"-->
-    <!--        android:textSize="@dimen/small_text_size"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/task_description" />-->
-
-    <!--    <Button-->
-    <!--        android:id="@+id/task_edit_btn"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="@dimen/default_margin"-->
-    <!--        android:background="@drawable/shape_button_orange"-->
-    <!--        android:fontFamily="@font/nunito_sans_bold"-->
-    <!--        android:text="Edit"-->
-    <!--        android:textColor="@color/gray_light"-->
-    <!--        android:textSize="@dimen/small_text_size"-->
-    <!--        app:layout_constraintEnd_toStartOf="@id/task_delete_btn"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/task_description" />-->
-
-    <Button
+    <ImageButton
         android:id="@+id/task_delete_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
-        android:background="@drawable/shape_button_orange"
+        android:background="@null"
+        android:clickable="true"
         android:fontFamily="@font/nunito_sans_bold"
-        android:text="Delete"
-        android:textColor="@color/gray_light"
+        android:padding="5dp"
+        android:src="@drawable/delete_icon"
         android:textSize="@dimen/small_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/task_description" />

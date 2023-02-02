@@ -5,19 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.ImageButton
 import android.widget.TextView
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onemoretick.R
+import com.example.onemoretick.fragments.EditTaskFragment
 import com.example.onemoretick.fragments.HomeFragment
 import com.example.onemoretick.models.request.DeleteTaskRequest
 import com.example.onemoretick.models.result.TaskResponse
-import com.example.onemoretick.models.task.Task
-import com.example.onemoretick.viewModel.DeleteTaskViewModel
-import com.example.onemoretick.viewModel.EditTaskViewModel
 
 class TaskAdapter(
-    private val homeFragment: HomeFragment,
     private val taskList: ArrayList<TaskResponse>,
     private val listener: OnItemClickListener
 ) :
@@ -48,36 +45,31 @@ class TaskAdapter(
         private val taskItemStartDate: TextView = view.findViewById(R.id.task_start_date)
         private val taskItemEndDate: TextView = view.findViewById(R.id.task_end_date)
         private val taskItemDescription: TextView = view.findViewById(R.id.task_description)
-        private val taskItemDeleteButton: Button = view.findViewById(R.id.task_delete_btn)
+        private val taskItemDeleteButton: ImageButton = view.findViewById(R.id.task_delete_btn)
+        private val taskItemEditButton: ImageButton = view.findViewById(R.id.task_edit_btn)
 
-        init {
-            view.apply {
-                checkBoxCompleted.setOnClickListener {
-                    val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION) {
-                        val task = taskList[adapterPosition]
-                        listener.onCheckBoxClick(task, checkBoxCompleted.isChecked)
-                    }
-                }
+        fun bind(taskResponse: TaskResponse) {
+            taskItemTitle.text = taskResponse.title
+            taskItemStartDate.text = taskResponse.startDate
+            taskItemEndDate.text = taskResponse.endDate
+            taskItemDescription.text = taskResponse.description
+            checkBoxCompleted.isChecked = taskResponse.isDone == 1
+
+            checkBoxCompleted.setOnClickListener {
+                listener.onCheckBoxClick(taskResponse, checkBoxCompleted.isChecked)
             }
-        }
-
-        fun bind(task: TaskResponse) {
-            taskItemTitle.text = task.title
-            taskItemStartDate.text = task.startDate
-            taskItemEndDate.text = task.endDate
-            taskItemDescription.text = task.description
             taskItemDeleteButton.setOnClickListener {
-                homeFragment.deleteTask(
-                    DeleteTaskRequest(task.idUser, task.id)
-                )
+                listener.onDeleteClick(taskResponse)
             }
-
-            view.setOnClickListener { homeFragment.selectedTask = task }
+            taskItemEditButton.setOnClickListener {
+                listener.onEditClick(taskResponse)
+            }
         }
     }
 
     interface OnItemClickListener {
         fun onCheckBoxClick(task: TaskResponse, isChecked: Boolean)
+        fun onEditClick(task: TaskResponse)
+        fun onDeleteClick(task: TaskResponse)
     }
 }
