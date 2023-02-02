@@ -18,12 +18,13 @@ import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.interfaces.OnCategoryItemClick
 import com.example.onemoretick.models.category.Category
 import com.example.onemoretick.models.request.DeleteTaskRequest
+import com.example.onemoretick.models.request.EditTaskRequest
 import com.example.onemoretick.models.result.TaskResponse
 import com.example.onemoretick.viewModel.DeleteTaskViewModel
 import com.example.onemoretick.viewModel.EditTaskViewModel
 import com.example.onemoretick.viewModel.GetTasksViewModel
 
-class HomeFragment(private var userId: Int) : Fragment() {
+class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClickListener {
     public var selectedTask: TaskResponse? = null
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null
     private var categories: ArrayList<Category> = arrayListOf()
@@ -34,8 +35,9 @@ class HomeFragment(private var userId: Int) : Fragment() {
                 // TODO: Process category click
             }
         })
-    private var taskAdapter: TaskAdapter = TaskAdapter(this, tasks)
+    private var taskAdapter: TaskAdapter = TaskAdapter(this, tasks, this)
     private val getTasksViewModel by viewModels<GetTasksViewModel>()
+    private val editTaskViewModel by viewModels<EditTaskViewModel>()
     private val deleteTaskViewModel by viewModels<DeleteTaskViewModel>()
 
     override fun onCreateView(
@@ -111,5 +113,19 @@ class HomeFragment(private var userId: Int) : Fragment() {
             fragment.arguments = args
             return fragment
         }
+    }
+
+    override fun onCheckBoxClick(task: TaskResponse, isChecked: Boolean) {
+        val editTaskRequest = EditTaskRequest(
+            task.id,
+            task.title,
+            task.description,
+            task.startDate,
+            task.endDate,
+            if (isChecked) 1 else 0,
+            task.idCategory,
+            task.idUser
+        )
+        editTaskViewModel.editTask(editTaskRequest)
     }
 }
