@@ -1,10 +1,7 @@
 package com.example.onemoretick.networking
 
 import com.example.onemoretick.models.request.*
-import com.example.onemoretick.models.result.ChangePassUserResponse
-import com.example.onemoretick.models.result.TaskResponse
-import com.example.onemoretick.models.result.LoginUserResponse
-import com.example.onemoretick.models.result.RegisterUserResponse
+import com.example.onemoretick.models.result.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -42,8 +39,8 @@ interface ApiInterface {
 //    @GET("api/v1/products/id/{productId}/suggestions+searched_product")
 //    suspend fun getProductAndSuggestionsById(@Path("productId") productId: String): ProductAndSuggestionsResponse
 
-//    @GET("api/v1/products")
-//    suspend fun getProducts(): List<ProductResponse>
+    @GET("categories")
+    suspend fun getCategories(): List<CategoryResponse>
 
 //    @POST("api/v1/reset_pass/requests/{email}")
 //    suspend fun sendEmailResetPassword(@Path("email") email: String): ResetPasswordResponse

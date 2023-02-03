@@ -1,10 +1,7 @@
 package com.example.onemoretick.networking
 
 import com.example.onemoretick.models.request.*
-import com.example.onemoretick.models.result.ChangePassUserResponse
-import com.example.onemoretick.models.result.TaskResponse
-import com.example.onemoretick.models.result.LoginUserResponse
-import com.example.onemoretick.models.result.RegisterUserResponse
+import com.example.onemoretick.models.result.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -35,7 +32,7 @@ interface RestClient {
 
 //    suspend fun verifyToken(userToken: VerifyTokenRequest): Response<Any>
 //    suspend fun sendEmailResetPassword(username: String): ResetPasswordResponse
-//    suspend fun getProducts(): List<ProductResponse>
+    suspend fun getCategories(): List<CategoryResponse>
 //    suspend fun getProductAndSuggestionsById(productId: String): ProductAndSuggestionsResponse
 
     companion object {
@@ -95,11 +92,11 @@ private class RetrofitRestClient : RestClient {
 //    override suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest) {
 //        return api.updatePassword(createNewPasswordRequest)
 //    }
-//
-//    override suspend fun getProducts(): List<ProductResponse> {
-//        return api.getProducts()
-//    }
-//
+
+    override suspend fun getCategories(): List<CategoryResponse> {
+        return api.getCategories()
+    }
+
 //    override suspend fun getProductAndSuggestionsById(productId: String): ProductAndSuggestionsResponse {
 //        return api.getProductAndSuggestionsById(productId)
 //    }

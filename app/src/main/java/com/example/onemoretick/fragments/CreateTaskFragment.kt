@@ -16,12 +16,16 @@ import com.example.onemoretick.R
 import com.example.onemoretick.fragments.HomeFragment.Companion.TAG_HOME
 import com.example.onemoretick.helpers.UtilValidators
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
+import com.example.onemoretick.models.category.Category
 import com.example.onemoretick.models.request.CreateTaskRequest
 import com.example.onemoretick.viewModel.CreateTaskViewModel
+import com.example.onemoretick.viewModel.GetCategoriesViewModel
 
 class CreateTaskFragment(private var userId: Int) : Fragment() {
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null
     private var categoriesList: ArrayList<String?> = arrayListOf()
+    private lateinit var adapter: ArrayAdapter<String?>
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,6 +34,7 @@ class CreateTaskFragment(private var userId: Int) : Fragment() {
         return inflater.inflate(R.layout.fragment_create_task, container, false)
     }
 
+    private val getCategoriesViewModel by viewModels<GetCategoriesViewModel>()
     private val createTaskViewModel by viewModels<CreateTaskViewModel>()
 
     override fun onAttach(context: Context) {
@@ -74,31 +79,26 @@ class CreateTaskFragment(private var userId: Int) : Fragment() {
     }
 
     private fun initUI() {
-        //UI reference of textView
         val categoriesAutoTV: AutoCompleteTextView =
             requireView().findViewById(R.id.categories_text_view)
 
-        // create list of customer
-        categoriesList = getCategoriesList()
+        getCategoriesViewModel.getCategories()
+        getCategoriesViewModel.getCategoriesSuccess.observe(viewLifecycleOwner) { categoriesResponse ->
+            categoriesList.clear()
+            categoriesResponse.onEach { c -> categoriesList.add(c.name) }
+            adapter.notifyDataSetChanged()
+        }
+        getCategoriesViewModel.error.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "Error retrieving categories", Toast.LENGTH_SHORT).show()
+        }
 
-        //Create adapter
-        val adapter: ArrayAdapter<String?> = ArrayAdapter(
+        adapter = ArrayAdapter(
             this.requireContext(),
             android.R.layout.simple_spinner_item,
             categoriesList
         )
 
-        //Set adapter
         categoriesAutoTV.setAdapter(adapter)
-    }
-
-    private fun getCategoriesList(): ArrayList<String?> {
-        val categories: ArrayList<String?> = ArrayList()
-        categories.add("Work")
-        categories.add("School")
-        categories.add("Home")
-        categories.add("Other")
-        return categories
     }
 
     private fun createTask(

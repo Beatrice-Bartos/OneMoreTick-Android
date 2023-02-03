@@ -38,7 +38,7 @@ class TaskAdapter(
         return taskList.size
     }
 
-    inner class TaskViewHolder(private val view: View) :
+    inner class TaskViewHolder(view: View) :
         RecyclerView.ViewHolder(view) {
         private val checkBoxCompleted: CheckBox = view.findViewById(R.id.check_box_completed)
         private val taskItemTitle: TextView = view.findViewById(R.id.task_name)
@@ -49,8 +49,9 @@ class TaskAdapter(
         private val taskItemEditButton: ImageButton = view.findViewById(R.id.task_edit_btn)
 
         fun bind(taskResponse: TaskResponse) {
+            val startDate = "${taskResponse.startDate} - "
             taskItemTitle.text = taskResponse.title
-            taskItemStartDate.text = taskResponse.startDate
+            taskItemStartDate.text = startDate
             taskItemEndDate.text = taskResponse.endDate
             taskItemDescription.text = taskResponse.description
             checkBoxCompleted.isChecked = taskResponse.isDone == 1

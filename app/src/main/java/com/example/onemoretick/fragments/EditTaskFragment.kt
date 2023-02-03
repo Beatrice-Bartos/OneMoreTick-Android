@@ -19,10 +19,12 @@ import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.models.request.EditTaskRequest
 import com.example.onemoretick.models.result.TaskResponse
 import com.example.onemoretick.viewModel.EditTaskViewModel
+import com.example.onemoretick.viewModel.GetCategoriesViewModel
 
 class EditTaskFragment(private val task: TaskResponse) : Fragment() {
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null
     private var categoriesList: ArrayList<String?> = arrayListOf()
+    private lateinit var adapter: ArrayAdapter<String?>
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,6 +33,7 @@ class EditTaskFragment(private val task: TaskResponse) : Fragment() {
         return inflater.inflate(R.layout.fragment_edit_task, container, false)
     }
 
+    private val getCategoriesViewModel by viewModels<GetCategoriesViewModel>()
     private val editTaskViewModel by viewModels<EditTaskViewModel>()
 
     override fun onAttach(context: Context) {
@@ -91,26 +94,24 @@ class EditTaskFragment(private val task: TaskResponse) : Fragment() {
         val categoriesAutoTV: AutoCompleteTextView =
             requireView().findViewById(R.id.edit_task_categories_text_view)
 
-        categoriesList = getCategoriesList()
-
-        val adapter: ArrayAdapter<String?> = ArrayAdapter(
+        getCategoriesViewModel.getCategories()
+        getCategoriesViewModel.getCategoriesSuccess.observe(viewLifecycleOwner) { categoriesResponse ->
+            categoriesList.clear()
+            categoriesResponse.onEach { c -> categoriesList.add(c.name) }
+            adapter.notifyDataSetChanged()
+            categoriesAutoTV.setText(categoriesList[task.idCategory - 1].toString())
+            adapter.filter.filter(null)
+        }
+        getCategoriesViewModel.error.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "Error retrieving categories", Toast.LENGTH_SHORT).show()
+        }
+        adapter = ArrayAdapter(
             this.requireContext(),
             android.R.layout.simple_spinner_item,
             categoriesList
         )
 
         categoriesAutoTV.setAdapter(adapter)
-        categoriesAutoTV.setText(categoriesAutoTV.adapter.getItem(task.idCategory - 1).toString())
-        adapter.filter.filter(null)
-    }
-
-    private fun getCategoriesList(): ArrayList<String?> {
-        val categories: ArrayList<String?> = ArrayList()
-        categories.add("Work")
-        categories.add("School")
-        categories.add("Home")
-        categories.add("Other")
-        return categories
     }
 
     companion object {

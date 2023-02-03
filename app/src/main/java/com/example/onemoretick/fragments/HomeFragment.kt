@@ -22,6 +22,7 @@ import com.example.onemoretick.models.request.EditTaskRequest
 import com.example.onemoretick.models.result.TaskResponse
 import com.example.onemoretick.viewModel.DeleteTaskViewModel
 import com.example.onemoretick.viewModel.EditTaskViewModel
+import com.example.onemoretick.viewModel.GetCategoriesViewModel
 import com.example.onemoretick.viewModel.GetTasksViewModel
 
 class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClickListener {
@@ -35,6 +36,7 @@ class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClic
             }
         })
     private var taskAdapter: TaskAdapter = TaskAdapter(tasks, this)
+    private val getCategoriesViewModel by viewModels<GetCategoriesViewModel>()
     private val getTasksViewModel by viewModels<GetTasksViewModel>()
     private val editTaskViewModel by viewModels<EditTaskViewModel>()
     private val deleteTaskViewModel by viewModels<DeleteTaskViewModel>()
@@ -59,13 +61,16 @@ class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClic
         setUpCategoryRecyclerView(view.findViewById(R.id.categories_list))
         setUpTaskRecyclerView(view.findViewById(R.id.tasks_list))
 
-        // TODO: Read categories
-        categories.add(Category(0, "All"))
-        categories.add(Category(1, "Work"))
-        categories.add(Category(2, "School"))
-        categories.add(Category(3, "Home"))
-        categories.add(Category(4, "Other"))
-        categoryAdapter.notifyDataSetChanged()
+        getCategoriesViewModel.getCategories()
+        getCategoriesViewModel.getCategoriesSuccess.observe(viewLifecycleOwner) { categoriesResponse ->
+            categories.clear()
+            categories.add(Category(0, "All"))
+            categoriesResponse.onEach { c -> categories.add(Category(c.id, c.name)) }
+            categoryAdapter.notifyDataSetChanged()
+        }
+        getCategoriesViewModel.error.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "Error retrieving categories", Toast.LENGTH_SHORT).show()
+        }
 
         getTasksViewModel.getTasks(userId)
         getTasksViewModel.getTasksSuccess.observe(viewLifecycleOwner) { tasksResponse ->
