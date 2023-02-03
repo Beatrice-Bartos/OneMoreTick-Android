@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.onemoretick.base.BaseViewModel
 import com.example.onemoretick.models.base.Result
-import com.example.onemoretick.models.request.CreateTaskRequest
 import com.example.onemoretick.models.request.EditTaskRequest
 import com.example.onemoretick.usecase.EditTaskUseCase
 import kotlinx.coroutines.Dispatchers

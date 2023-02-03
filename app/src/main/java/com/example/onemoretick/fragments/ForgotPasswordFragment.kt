@@ -13,12 +13,7 @@ import com.example.onemoretick.R
 import com.example.onemoretick.helpers.UtilValidators
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
 import com.example.onemoretick.models.request.CreateNewPasswordRequest
-import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.viewModel.ChangePasswordViewModel
-import com.example.onemoretick.viewModel.LoginViewModel
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.FirebaseAuth
 
 class ForgotPasswordFragment : Fragment() {
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null

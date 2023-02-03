@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/default_margin"
-    android:background="@drawable/shape_button_blue"
+    android:background="@drawable/selector_button_blue"
     android:clickable="true"
     android:focusable="true"
     android:padding="@dimen/default_padding">

@@ -2,7 +2,6 @@ package com.example.onemoretick.helpers
 
 import android.text.TextUtils
 import android.util.Patterns
-import com.example.onemoretick.models.base.Result
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException

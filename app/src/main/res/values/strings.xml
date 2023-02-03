@@ -47,7 +47,5 @@
     <string name="title">One More Tick</string>
     <string name="all_categories">All Categories</string>
     <string name="create_task">Create task</string>
-    <string name="shopping_lists">Shopping Lists</string>
-    <string name="create_a_shopping_list">Create a shopping list</string>
     <string name="all_tasks">All tasks</string>
 </resources>

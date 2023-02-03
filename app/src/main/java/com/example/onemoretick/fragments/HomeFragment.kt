@@ -29,13 +29,16 @@ class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClic
     private var fragmentsCommunication: ActivitiesFragmentsCommunication? = null
     private var categories: ArrayList<Category> = arrayListOf()
     private var tasks: ArrayList<TaskResponse> = arrayListOf()
+    private var filteredTasks: ArrayList<TaskResponse> = arrayListOf()
+    private var selectedCategoryId: Int = 0
     private var categoryAdapter: CategoryAdapter =
         CategoryAdapter(categories, object : OnCategoryItemClick {
-            override fun categoryItemClick(category: Category?) {
-                // TODO: Process category click
+            override fun categoryItemClick(category: Category) {
+                onCategoryClick(category)
             }
         })
-    private var taskAdapter: TaskAdapter = TaskAdapter(tasks, this)
+
+    private var taskAdapter: TaskAdapter = TaskAdapter(filteredTasks, this)
     private val getCategoriesViewModel by viewModels<GetCategoriesViewModel>()
     private val getTasksViewModel by viewModels<GetTasksViewModel>()
     private val editTaskViewModel by viewModels<EditTaskViewModel>()
@@ -76,7 +79,7 @@ class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClic
         getTasksViewModel.getTasksSuccess.observe(viewLifecycleOwner) { tasksResponse ->
             tasks.clear()
             tasksResponse.onEach { t -> tasks.add(t) }
-            taskAdapter.notifyDataSetChanged()
+            refreshTasks()
         }
         getTasksViewModel.error.observe(viewLifecycleOwner) {
             Toast.makeText(context, "Error retrieving tasks", Toast.LENGTH_SHORT).show()
@@ -105,17 +108,30 @@ class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClic
         }
     }
 
+    private fun refreshTasks() {
+        if (selectedCategoryId == 0) {
+            filteredTasks.clear()
+            filteredTasks.addAll(tasks)
+        } else {
+            filteredTasks.clear()
+            filteredTasks.addAll(tasks.filter { taskResponse -> taskResponse.idCategory == selectedCategoryId })
+        }
+        taskAdapter.notifyDataSetChanged()
+    }
+
     override fun onCheckBoxClick(task: TaskResponse, isChecked: Boolean) {
+        val checked = if (isChecked) 1 else 0
         val editTaskRequest = EditTaskRequest(
             task.id,
             task.title,
             task.description,
             task.startDate,
             task.endDate,
-            if (isChecked) 1 else 0,
+            checked,
             task.idCategory,
             task.idUser
         )
+        tasks.first { t -> t.id == task.id }.isDone = checked
         editTaskViewModel.editTask(editTaskRequest)
     }
 
@@ -125,6 +141,11 @@ class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClic
 
     override fun onDeleteClick(task: TaskResponse) {
         deleteTask(DeleteTaskRequest(task.idUser, task.id))
+    }
+
+    private fun onCategoryClick(category: Category) {
+        selectedCategoryId = category.id
+        refreshTasks()
     }
 
     companion object {

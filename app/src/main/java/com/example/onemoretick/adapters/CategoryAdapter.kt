@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onemoretick.R
 import com.example.onemoretick.interfaces.OnCategoryItemClick
@@ -14,6 +15,8 @@ class CategoryAdapter(
     private val onCategoryItemClick: OnCategoryItemClick?
 ) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+    private var categoryConstraintLayouts: ArrayList<ConstraintLayout> = arrayListOf()
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -21,6 +24,13 @@ class CategoryAdapter(
         val inflater = LayoutInflater.from(parent.context)
         val view: View =
             inflater.inflate(R.layout.category_item_cell, parent, false)
+
+        val constraintLayout = view as ConstraintLayout
+        if (categoryConstraintLayouts.isEmpty()) {
+            constraintLayout.isSelected = true
+        }
+        categoryConstraintLayouts.add(constraintLayout)
+
         return CategoryViewHolder(view)
     }
 
@@ -39,10 +49,10 @@ class CategoryAdapter(
         fun bind(category: Category) {
             categoryItemTitle.text = category.name
             view.setOnClickListener {
+                categoryConstraintLayouts.onEach { cl -> cl.isSelected = false }
+                (view as ConstraintLayout).isSelected = true
                 onCategoryItemClick?.categoryItemClick(category)
             }
         }
-
     }
-
 }

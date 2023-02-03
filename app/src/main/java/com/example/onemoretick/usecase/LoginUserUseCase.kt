@@ -1,6 +1,5 @@
 package com.example.onemoretick.usecase
 
-import android.util.Log
 import com.example.onemoretick.models.base.UseCase
 import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.models.result.LoginUserResponse

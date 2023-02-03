@@ -3,15 +3,11 @@ package com.example.onemoretick.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onemoretick.R
-import com.example.onemoretick.fragments.EditTaskFragment
-import com.example.onemoretick.fragments.HomeFragment
-import com.example.onemoretick.models.request.DeleteTaskRequest
 import com.example.onemoretick.models.result.TaskResponse
 
 class TaskAdapter(

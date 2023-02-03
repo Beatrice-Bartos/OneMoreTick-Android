@@ -16,7 +16,6 @@ import com.example.onemoretick.R
 import com.example.onemoretick.fragments.HomeFragment.Companion.TAG_HOME
 import com.example.onemoretick.helpers.UtilValidators
 import com.example.onemoretick.interfaces.ActivitiesFragmentsCommunication
-import com.example.onemoretick.models.category.Category
 import com.example.onemoretick.models.request.CreateTaskRequest
 import com.example.onemoretick.viewModel.CreateTaskViewModel
 import com.example.onemoretick.viewModel.GetCategoriesViewModel

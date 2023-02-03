@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.onemoretick.base.BaseViewModel
 import com.example.onemoretick.models.base.Result
-import com.example.onemoretick.models.request.LoginUserRequest
 import com.example.onemoretick.models.request.RegisterUserRequest
 import com.example.onemoretick.usecase.RegisterUserUseCase
 import kotlinx.coroutines.Dispatchers

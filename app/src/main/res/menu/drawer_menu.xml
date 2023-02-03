@@ -11,16 +11,6 @@
         android:icon="@drawable/all_tasks_icon"
         android:title="@string/all_tasks" />
     <item
-        android:id="@+id/create_shopping_list"
-        android:fontFamily="@font/nunito_sans_semibold"
-        android:icon="@drawable/add_shopping_icon"
-        android:title="@string/create_a_shopping_list" />
-    <item
-        android:id="@+id/shopping_lists"
-        android:fontFamily="@font/nunito_sans_semibold"
-        android:icon="@drawable/shopping_list_icon"
-        android:title="@string/shopping_lists" />
-    <item
         android:fontFamily="@font/nunito_sans_semibold"
         android:title="@string/account">
         <menu>

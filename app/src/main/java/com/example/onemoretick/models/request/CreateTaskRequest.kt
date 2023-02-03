@@ -1,7 +1,6 @@
 package com.example.onemoretick.models.request
 
 import com.google.gson.annotations.SerializedName
-import java.time.LocalDate
 
 data class CreateTaskRequest(
     @SerializedName("title")

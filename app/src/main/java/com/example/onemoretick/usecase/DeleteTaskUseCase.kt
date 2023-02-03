@@ -1,9 +1,7 @@
 package com.example.onemoretick.usecase
 
-import com.example.onemoretick.models.base.NoParams
 import com.example.onemoretick.models.base.UseCase
 import com.example.onemoretick.models.request.DeleteTaskRequest
-import com.example.onemoretick.models.request.EditTaskRequest
 import com.example.onemoretick.models.result.TaskResponse
 import com.example.onemoretick.networking.RestClient
 import kotlinx.coroutines.Dispatchers

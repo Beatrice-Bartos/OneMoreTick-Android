@@ -3,7 +3,6 @@ package com.example.onemoretick.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -60,14 +59,6 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
             if (item.itemId == R.id.create_task) {
                 Toast.makeText(context, "Create task", Toast.LENGTH_SHORT).show();
                 onReplaceFragment(TAG_CREATE_TASK, response.id)
-            }
-            if (item.itemId == R.id.shopping_lists) {
-                Toast.makeText(context, "Shopping lists", Toast.LENGTH_SHORT).show();
-//                onReplaceFragment(TAG_FIND)
-            }
-            if (item.itemId == R.id.create_shopping_list) {
-                Toast.makeText(context, "Create Shopping list", Toast.LENGTH_SHORT).show();
-//                onReplaceFragment(TAG_EDIT)
             }
             if (item.itemId == R.id.logout) {
                 Toast.makeText(context, "Logout success!", Toast.LENGTH_SHORT).show();
