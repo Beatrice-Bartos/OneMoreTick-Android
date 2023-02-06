@@ -82,11 +82,11 @@ class ForgotPasswordFragment : Fragment() {
 
     private fun resetPassword(email: String, password: String) {
         changePassword(email, password)
-        Toast.makeText(
-            context,
-            "The email was sent successfully!",
-            Toast.LENGTH_SHORT
-        ).show()
+//        Toast.makeText(
+//            context,
+//            "The email was sent successfully!",
+//            Toast.LENGTH_SHORT
+//        ).show()
         goToLoginFragment()
     }
 

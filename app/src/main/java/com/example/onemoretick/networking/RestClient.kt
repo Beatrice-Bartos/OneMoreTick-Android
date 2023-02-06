@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 interface RestClient {
 
     suspend fun loginUser(request: LoginUserRequest): Response<LoginUserResponse>
-    suspend fun registerUser(request: RegisterUserRequest): Response<RegisterUserResponse>
+    suspend fun registerUser(request: RegisterUserRequest): Response<LoginUserResponse>
     suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest): Response<ChangePassUserResponse>
     suspend fun getTasksByUserId(userId: Int): List<TaskResponse>
     suspend fun createTask(
@@ -29,10 +29,7 @@ interface RestClient {
         taskId: Int
     ): TaskResponse
 
-//    suspend fun verifyToken(userToken: VerifyTokenRequest): Response<Any>
-//    suspend fun sendEmailResetPassword(username: String): ResetPasswordResponse
     suspend fun getCategories(): List<CategoryResponse>
-//    suspend fun getProductAndSuggestionsById(productId: String): ProductAndSuggestionsResponse
 
     companion object {
         val INSTANCE: RestClient = RetrofitRestClient()
@@ -52,7 +49,7 @@ private class RetrofitRestClient : RestClient {
 
     override suspend fun registerUser(
         request: RegisterUserRequest,
-    ): Response<RegisterUserResponse> {
+    ): Response<LoginUserResponse> {
         return api.registerUser(request)
     }
 
@@ -79,26 +76,9 @@ private class RetrofitRestClient : RestClient {
         return api.getTasksByUserId(userId)
     }
 
-//
-//    override suspend fun verifyToken(userToken: VerifyTokenRequest): Response<Any> {
-//        return api.verifyToken(userToken)
-//    }
-//
-//    override suspend fun sendEmailResetPassword(email: String): ResetPasswordResponse {
-//        return api.sendEmailResetPassword(email)
-//    }
-//
-//    override suspend fun updatePassword(createNewPasswordRequest: CreateNewPasswordRequest) {
-//        return api.updatePassword(createNewPasswordRequest)
-//    }
-
     override suspend fun getCategories(): List<CategoryResponse> {
         return api.getCategories()
     }
-
-//    override suspend fun getProductAndSuggestionsById(productId: String): ProductAndSuggestionsResponse {
-//        return api.getProductAndSuggestionsById(productId)
-//    }
 
     init {
         val okHttpClient = OkHttpClient

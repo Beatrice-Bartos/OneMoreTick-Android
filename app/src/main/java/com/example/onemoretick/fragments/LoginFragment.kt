@@ -76,22 +76,22 @@ class LoginFragment : Fragment() {
             goToHomeActivity(loginResponse)
         }
         loginViewModel.error.observe(viewLifecycleOwner){
-            Toast.makeText(context, "Error logging in", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "Error logging in", Toast.LENGTH_SHORT).show();
         }
     }
 
     private fun goToRegisterFragment() {
-        Toast.makeText(context, "Go to Register Fragment", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "Go to Register Fragment", Toast.LENGTH_SHORT).show();
         fragmentsCommunication?.onReplaceFragment(RegisterFragment.TAG_REGISTER)
     }
 
     private fun goToForgotPasswordFragment() {
-        Toast.makeText(context, "Go to Forgot Password Fragment", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "Go to Forgot Password Fragment", Toast.LENGTH_SHORT).show();
         fragmentsCommunication?.onReplaceFragment(ForgotPasswordFragment.TAG_FORGOT_PASS)
     }
 
     private fun goToHomeActivity(loginResponse: LoginUserResponse) {
-        Toast.makeText(context, "Login success!", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "Login success!", Toast.LENGTH_SHORT).show();
         val intent = Intent(activity, HomeActivity::class.java)
         intent.putExtra("Response", loginResponse)
         startActivity(intent)

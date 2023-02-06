@@ -45,7 +45,7 @@ class WelcomeFragment : Fragment() {
         const val TAG_WELCOME = "TAG_WELCOME"
         fun newInstance(): WelcomeFragment {
             val args = Bundle()
-            val fragment: WelcomeFragment = WelcomeFragment()
+            val fragment = WelcomeFragment()
             fragment.arguments = args
             return fragment
         }

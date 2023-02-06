@@ -86,7 +86,7 @@ class EditTaskFragment(private val task: TaskResponse) : Fragment() {
             fragmentsCommunication?.onReplaceFragment(TAG_HOME, task.idUser)
         }
         editTaskViewModel.error.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "Error saving task", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Error saving task", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -103,7 +103,7 @@ class EditTaskFragment(private val task: TaskResponse) : Fragment() {
             adapter.filter.filter(null)
         }
         getCategoriesViewModel.error.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "Error retrieving categories", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Error retrieving categories", Toast.LENGTH_SHORT).show()
         }
         adapter = ArrayAdapter(
             this.requireContext(),

@@ -72,7 +72,7 @@ class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClic
             categoryAdapter.notifyDataSetChanged()
         }
         getCategoriesViewModel.error.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "Error retrieving categories", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Error retrieving categories", Toast.LENGTH_SHORT).show()
         }
 
         getTasksViewModel.getTasks(userId)
@@ -82,7 +82,7 @@ class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClic
             refreshTasks()
         }
         getTasksViewModel.error.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "Error retrieving tasks", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Error retrieving tasks", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -104,7 +104,7 @@ class HomeFragment(private var userId: Int) : Fragment(), TaskAdapter.OnItemClic
             getTasksViewModel.getTasks(userId)
         }
         deleteTaskViewModel.error.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "Error deleting task", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Error deleting task", Toast.LENGTH_SHORT).show()
         }
     }
 

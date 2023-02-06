@@ -10,7 +10,6 @@ class HeaderInterceptor : Interceptor {
             request()
                 .newBuilder()
                 .addHeader("x-device-type", Build.DEVICE)
-//                .addHeader("Authorization", "Bearer " + domainPreferenceInstance!!.userAppData.token)
                 .build()
         )
     }

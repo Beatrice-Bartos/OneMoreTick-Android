@@ -73,7 +73,7 @@ class CreateTaskFragment(private var userId: Int) : Fragment() {
             fragmentsCommunication?.onReplaceFragment(TAG_HOME, createTaskResponse.idUser)
         }
         createTaskViewModel.error.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "Error creating task", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Error creating task", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -88,7 +88,7 @@ class CreateTaskFragment(private var userId: Int) : Fragment() {
             adapter.notifyDataSetChanged()
         }
         getCategoriesViewModel.error.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "Error retrieving categories", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Error retrieving categories", Toast.LENGTH_SHORT).show()
         }
 
         adapter = ArrayAdapter(

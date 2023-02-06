@@ -5,21 +5,23 @@ import androidx.lifecycle.viewModelScope
 import com.example.onemoretick.base.BaseViewModel
 import com.example.onemoretick.models.base.Result
 import com.example.onemoretick.models.request.RegisterUserRequest
+import com.example.onemoretick.models.result.LoginUserResponse
+import com.example.onemoretick.models.result.RegisterUserResponse
 import com.example.onemoretick.usecase.RegisterUserUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RegisterViewModel : BaseViewModel() {
     private val registerUserUseCase = RegisterUserUseCase()
-    private val registerSuccess = MutableLiveData<Boolean>()
+    val registerSuccess = MutableLiveData<LoginUserResponse>()
 
     fun registerUser(user: RegisterUserRequest) {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = registerUserUseCase(user)
-            when (result) {
+            when (val result = registerUserUseCase(user)) {
                 is Result.Error -> setError(result.value)
-                is Result.Success -> registerSuccess.postValue(true)
+                is Result.Success -> registerSuccess.postValue(result.value!!)
             }
         }
     }
 }
+

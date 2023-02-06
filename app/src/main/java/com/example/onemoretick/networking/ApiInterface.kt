@@ -10,7 +10,7 @@ interface ApiInterface {
     suspend fun loginUser(@Body userToLogin: LoginUserRequest): Response<LoginUserResponse>
 
     @POST("register")
-    suspend fun registerUser(@Body userToRegister: RegisterUserRequest): Response<RegisterUserResponse>
+    suspend fun registerUser(@Body userToRegister: RegisterUserRequest): Response<LoginUserResponse>
 
     @PUT("change_pass")
     suspend fun updatePassword(@Body updatePassword: CreateNewPasswordRequest): Response<ChangePassUserResponse>
@@ -36,17 +36,12 @@ interface ApiInterface {
     @GET("tasks/{userId}")
     suspend fun getTasksByUserId(@Path("userId") userId: Int): List<TaskResponse>
 
-//    @GET("api/v1/products/id/{productId}/suggestions+searched_product")
-//    suspend fun getProductAndSuggestionsById(@Path("productId") productId: String): ProductAndSuggestionsResponse
-
     @GET("categories")
     suspend fun getCategories(): List<CategoryResponse>
 
-//    @POST("api/v1/reset_pass/requests/{email}")
-//    suspend fun sendEmailResetPassword(@Path("email") email: String): ResetPasswordResponse
-
     companion object {
-                const val BASE_URL = "http://192.168.1.175:8080/"
+//                const val BASE_URL = "http://192.168.1.175:8080/"
+                const val BASE_URL = "http://192.168.1.131:8080/"
 //        const val BASE_URL = "http://192.168.1.4:8080/"
     }
 }

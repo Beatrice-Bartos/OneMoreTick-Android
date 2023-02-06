@@ -15,10 +15,6 @@ object UtilValidators {
         return !TextUtils.isEmpty(password) && password.length >= 6
     }
 
-    fun isNotEmptyInput(input: String?): Boolean {
-        return !TextUtils.isEmpty(input)
-    }
-
     fun isValidDate(date: String): Boolean {
         try {
             LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);

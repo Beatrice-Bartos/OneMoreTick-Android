@@ -53,15 +53,15 @@ class HomeActivity : AppCompatActivity(), ActivitiesFragmentsCommunication {
 
         navigationView.setNavigationItemSelectedListener { item ->
             if (item.itemId == R.id.all_tasks) {
-                Toast.makeText(context, "All tasks", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "All tasks", Toast.LENGTH_SHORT).show();
                 onReplaceFragment(TAG_HOME, response.id)
             }
             if (item.itemId == R.id.create_task) {
-                Toast.makeText(context, "Create task", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Create task", Toast.LENGTH_SHORT).show();
                 onReplaceFragment(TAG_CREATE_TASK, response.id)
             }
             if (item.itemId == R.id.logout) {
-                Toast.makeText(context, "Logout success!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Logout success!", Toast.LENGTH_SHORT).show();
                 goToWelcome()
             }
             false
